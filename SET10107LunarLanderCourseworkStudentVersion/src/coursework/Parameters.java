@@ -28,6 +28,7 @@ public class Parameters {
 	public static double mutateRate = 0.04; // mutation rate for mutation operator
 	public static double mutateChange = 0.1; // delta change for mutation operator
 	public static double crossoverProbability = 0.5;
+	public static double mutationProbability = 0.5;
 	
 	//Random number generator used throughout the application
 	public static long seed = System.currentTimeMillis();

@@ -17,8 +17,7 @@ import model.NeuralNetwork;
 public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 
 	@Override
-	public void run()
-	{
+	public void run() {
 		//Initialise a population of Individuals with random weights
 		System.out.println("Initialising weights...");
 		population = initialise();
@@ -98,8 +97,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 	}
 
 	// Generates a randomly initialised population
-	private ArrayList<Individual> initialise()
-	{
+	private ArrayList<Individual> initialise() {
 		population = new ArrayList<>();
 		for (int i = 0; i < Parameters.popSize; ++i)
 		{
@@ -112,8 +110,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 	}
 
 	// Returns the index of the worst member of the population
-	private int getWorstIndex()
-	{
+	private int getWorstIndex() {
 		Individual worst = null;
 		int idx = -1;
 		for (int i = 0; i < population.size(); i++)
@@ -132,21 +129,23 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		return idx;
 	}
 
-	private Individual getBest(ArrayList<Individual> aPopulation)
-	{
-		double bestFitness = Double.MAX_VALUE;
-		Individual best = null;
-		for(Individual individual : aPopulation)
-		{
-			if(individual.fitness < bestFitness || best == null)
-			{
-				best = individual;
-				bestFitness = best.fitness;
+	private Individual getWorst(ArrayList<Individual> aPopulation) {
+		double worstFitness = 0;
+		Individual worst = null;
+		for(Individual individual : population){
+			if(individual.fitness > worstFitness || worst == null){
+				worst = individual;
+				worstFitness = worst.fitness;
 			}
 		}
-		return best;
+		return worst;
 	}
 
+	private void printPopulation() {
+		for(Individual individual : population){
+			System.out.println(individual);
+		}
+	}
 
 	/*******************************************************************
 	 * 						SELECTION METHODS						   *
@@ -188,7 +187,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		{
 			candidates.add(population.get(Parameters.random.nextInt(population.size())));
 		}
-		return getBest(candidates).copy();
+		return getBest().copy();
 	}
 
 	/*******************************************************************
@@ -209,12 +208,42 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 
 		for(int i = 0; i < parent1.chromosome.length; i++)
 		{
-			if(Parameters.random.nextInt(2) == 0)
+			if(Parameters.random.nextInt(1) <= 0.5)
 				child1.chromosome[i] = parent1.chromosome[i];
 			else
 				child1.chromosome[i] = parent2.chromosome[i];
 		}
 		return child1;
+	}
+
+	private Individual doublePointCrossover(Individual parent1, Individual parent2) {
+		// crossover probability
+		if (Parameters.random.nextDouble() > Parameters.crossoverProbability)
+			return parent1;
+
+		Individual child = new Individual(); // new empty child
+
+		// random crossover points
+		int crossoverPoint1 = Parameters.random.nextInt(parent1.chromosome.length);
+		int crossoverPoint2 = Parameters.random.nextInt(parent1.chromosome.length);
+
+		// make sure first crossover point is before second one
+		if (crossoverPoint1 > crossoverPoint2) {
+			int temp = crossoverPoint1;
+			crossoverPoint1 = crossoverPoint2;
+			crossoverPoint2 = temp;
+		}
+
+		for (int i = 0; i < crossoverPoint1; i++)
+			child.chromosome[i] = parent1.chromosome[i];
+
+		for (int i = crossoverPoint1; i < crossoverPoint2; i++)
+			child.chromosome[i] = parent2.chromosome[i];
+
+		for (int i = crossoverPoint2; i < parent1.chromosome.length; i++)
+			child.chromosome[i] = parent1.chromosome[i];
+
+		return child;
 	}
 
 	/*******************************************************************
@@ -234,6 +263,23 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		}		
 	}
 
+	private Individual swapMutation(Individual child){
+
+		// mutation probability
+		if(Parameters.random.nextDouble() > Parameters.mutationProbability)
+			return child;
+
+		int index1 = Parameters.random.nextInt(child.chromosome.length);
+		int index2 = Parameters.random.nextInt(child.chromosome.length);
+		double swap1 = child.chromosome[index1];
+		double swap2 = child.chromosome[index2];
+		double temp = swap1;
+		child.chromosome[index1] = swap2;
+		child.chromosome[index2] = temp;
+
+		return child;
+	}
+
 	/*******************************************************************
 	 * 						REPLACEMENT METHODS						   *
 	 *******************************************************************/
@@ -242,6 +288,56 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 			int idx = getWorstIndex();		
 			population.set(idx, individual);
 		}		
+	}
+
+	/*******************************************************************
+	 * 						DIVERSITY METHODS						   *
+	 *******************************************************************/
+	// DIVERSITY - SAWTOOTH & HILL CLIMBER
+	public void removeIndividual(){	population.remove(getWorst(population)); }
+
+	private void refillPopulation(int start, int bound) {
+		// refill population with random seeds
+		while(population.size() < Parameters.popSize){
+			population2 = initialise(); // find out this
+			Individual individual = new Individual();
+			individual.initialise(start, bound);
+			population.add(individual);
+		}
+	}
+
+	/**
+	 *  CHECK THIS FUNCTION - NOT FINISHED
+	 * @param i
+	 * @return
+	 */
+	private Individual hill_climber(Individual i){
+
+		System.out.println("\n---HILL CLIMBER---");
+		Individual best = i.copy();
+		Individual temp = i.copy(); // the best seed after running the EA
+		double before = temp.fitness;
+
+		for (int j = 0; j < 100; j++)
+		{
+			// change the value of 1 pacing value
+			int mutationChange = Parameters.random.nextInt(1); // check
+			int index_pacing = Parameters.random.nextInt(temp.chromosome.length);
+
+			// ensure mutation is valid
+			if (temp.chromosome[index_pacing] + mutationChange <= 1)
+				temp.chromosome[index_pacing] = temp.chromosome[index_pacing] + mutationChange;
+
+			// if after mutation, individual is better, now work on that one
+			if (temp.fitness <  best.fitness) {
+				best = temp.copy();
+				System.out.println("better: "+best.fitness+" at iteration "+j);
+			}
+			else
+				temp = best.copy(); // forget about the mutated allele and work on first one
+		}
+		System.out.println("best: "+best.fitness);
+		return best;
 	}
 
 	/*******************************************************************
