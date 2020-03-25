@@ -72,23 +72,19 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		saveNeuralNetwork();
 	}
 
-	
 
-	/**
-	 * Sets the fitness of the individuals passed as parameters (whole population)
-	 * 
-	 */
+	/*******************************************************************
+	 * 				     		USEFUL TOOLS						   *
+	 *******************************************************************/
+
+	// Sets the fitness of the individuals passes as parameters (whole population)
 	private void evaluateIndividuals(ArrayList<Individual> individuals) {
 		for (Individual individual : individuals) {
 			individual.fitness = Fitness.evaluate(individual, this);
 		}
 	}
 
-
-	/**
-	 * Returns a copy of the best individual in the population
-	 * 
-	 */
+	// Returns a copy of the best individual in the population
 	private Individual getBest() {
 		best = null;;
 		for (Individual individual : population) {
@@ -101,10 +97,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		return best;
 	}
 
-	/**
-	 * Generates a randomly initialised population
-	 * 
-	 */
+	// Generates a randomly initialised population
 	private ArrayList<Individual> initialise() {
 		population = new ArrayList<>();
 		for (int i = 0; i < Parameters.popSize; ++i) {
@@ -114,6 +107,27 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		}
 		evaluateIndividuals(population);
 		return population;
+	}
+
+	// Returns the index of the worst member of the population
+	private int getWorstIndex()
+	{
+		Individual worst = null;
+		int idx = -1;
+		for (int i = 0; i < population.size(); i++)
+		{
+			Individual individual = population.get(i);
+			if (worst == null)
+			{
+				worst = individual;
+				idx = i;
+			} else if (individual.fitness > worst.fitness)
+			{
+				worst = individual;
+				idx = i;
+			}
+		}
+		return idx;
 	}
 
 	/*******************************************************************
@@ -174,12 +188,10 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		}		
 	}
 
-	/**
-	 * 
-	 * Replaces the worst member of the population 
-	 * (regardless of fitness)
-	 * 
-	 */
+
+	/*******************************************************************
+	 * 						REPLACEMENT METHODS						   *
+	 *******************************************************************/
 	private void replace(ArrayList<Individual> individuals) {
 		for(Individual individual : individuals) {
 			int idx = getWorstIndex();		
@@ -187,33 +199,20 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		}		
 	}
 
-	
 
-	/**
-	 * Returns the index of the worst member of the population
-	 * @return
-	 */
-	private int getWorstIndex() {
-		Individual worst = null;
-		int idx = -1;
-		for (int i = 0; i < population.size(); i++) {
-			Individual individual = population.get(i);
-			if (worst == null) {
-				worst = individual;
-				idx = i;
-			} else if (individual.fitness > worst.fitness) {
-				worst = individual;
-				idx = i; 
-			}
-		}
-		return idx;
-	}	
 
+
+	/*******************************************************************
+	 * 						ACTIVATION FUNCTION 					   *
+	 *******************************************************************/
 	@Override
-	public double activationFunction(double x) {
-		if (x < -20.0) {
+	public double activationFunction(double x)
+	{
+		if (x < -20.0)
+		{
 			return -1.0;
-		} else if (x > 20.0) {
+		} else if (x > 20.0)
+		{
 			return 1.0;
 		}
 		return Math.tanh(x);
