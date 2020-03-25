@@ -20,12 +20,14 @@ public class Parameters {
 		
 	public static int popSize = 40;
 	public static int maxEvaluations = 20000;
+	public static int tournamentSize = 10;
 	
 	// Parameters for mutation 
 	// Rate = probability of changing a gene
 	// Change = the maximum +/- adjustment to the gene value
 	public static double mutateRate = 0.04; // mutation rate for mutation operator
 	public static double mutateChange = 0.1; // delta change for mutation operator
+	public static double crossoverProbability = 0.5;
 	
 	//Random number generator used throughout the application
 	public static long seed = System.currentTimeMillis();

@@ -15,13 +15,10 @@ import model.NeuralNetwork;
  * 
  */
 public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
-	
 
-	/**
-	 * The Main Evolutionary Loop
-	 */
 	@Override
-	public void run() {		
+	public void run()
+	{
 		//Initialise a population of Individuals with random weights
 		System.out.println("Initialising weights...");
 		population = initialise();
@@ -72,7 +69,6 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		saveNeuralNetwork();
 	}
 
-
 	/*******************************************************************
 	 * 				     		USEFUL TOOLS						   *
 	 *******************************************************************/
@@ -87,10 +83,14 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 	// Returns a copy of the best individual in the population
 	private Individual getBest() {
 		best = null;;
-		for (Individual individual : population) {
-			if (best == null) {
+		for (Individual individual : population)
+		{
+			if (best == null)
+			{
 				best = individual.copy();
-			} else if (individual.fitness < best.fitness) {
+			}
+			else if (individual.fitness < best.fitness)
+			{
 				best = individual.copy();
 			}
 		}
@@ -98,9 +98,11 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 	}
 
 	// Generates a randomly initialised population
-	private ArrayList<Individual> initialise() {
+	private ArrayList<Individual> initialise()
+	{
 		population = new ArrayList<>();
-		for (int i = 0; i < Parameters.popSize; ++i) {
+		for (int i = 0; i < Parameters.popSize; ++i)
+		{
 			//chromosome weights are initialised randomly in the constructor
 			Individual individual = new Individual();
 			population.add(individual);
@@ -130,35 +132,63 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		return idx;
 	}
 
+	private Individual getBest(ArrayList<Individual> aPopulation)
+	{
+		double bestFitness = Double.MAX_VALUE;
+		Individual best = null;
+		for(Individual individual : aPopulation)
+		{
+			if(individual.fitness < bestFitness || best == null)
+			{
+				best = individual;
+				bestFitness = best.fitness;
+			}
+		}
+		return best;
+	}
+
+
 	/*******************************************************************
 	 * 						SELECTION METHODS						   *
 	 *******************************************************************/
-	private Individual select() {		
+	private Individual select()
+	{
 		Individual parent = population.get(Parameters.random.nextInt(Parameters.popSize));
 		return parent.copy();
 	}
+
 	private Individual RoulletteSelection()
 	{
-		Individual temp = new Individual();
+		Individual parent = new Individual();
 
-		double sum = 0;
-		for(Individual individual:population)
+		double total = 0;
+		for(Individual i:population)
 		{
-			sum += 1 / individual.fitness;
-			temp = individual;
+			total += 1 / i.fitness;
+			parent = i;
 		}
 
-		double random = ThreadLocalRandom.current().nextDouble(0, 1) * sum;
+		double spinner = total * ThreadLocalRandom.current().nextDouble(0, 1);
 
-		double counter = 0;
-		for(Individual individual:population)
+		double count = 0;
+		for(Individual i:population)
 		{
-			counter += 1 / individual.fitness;
-			if (counter >= random)
-				return individual;
+			count += 1 / i.fitness;
+			if (count >= spinner)
+				return i;
 		}
 
-		return temp;
+		return parent;
+	}
+
+	private Individual tournamentSelection()
+	{
+		ArrayList<Individual> candidates = new ArrayList<Individual>();
+		for(int i = 0; i < Parameters.tournamentSize; i++)
+		{
+			candidates.add(population.get(Parameters.random.nextInt(population.size())));
+		}
+		return getBest(candidates).copy();
 	}
 
 	/*******************************************************************
@@ -169,6 +199,22 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		children.add(parent1.copy());
 		children.add(parent2.copy());			
 		return children;
+	}
+
+	private Individual UniformCrossover(Individual parent1, Individual parent2) {
+		if(Parameters.random.nextDouble() > Parameters.crossoverProbability)
+			return parent1;
+
+		Individual child1 = new Individual();
+
+		for(int i = 0; i < parent1.chromosome.length; i++)
+		{
+			if(Parameters.random.nextInt(2) == 0)
+				child1.chromosome[i] = parent1.chromosome[i];
+			else
+				child1.chromosome[i] = parent2.chromosome[i];
+		}
+		return child1;
 	}
 
 	/*******************************************************************
@@ -188,7 +234,6 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		}		
 	}
 
-
 	/*******************************************************************
 	 * 						REPLACEMENT METHODS						   *
 	 *******************************************************************/
@@ -198,9 +243,6 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 			population.set(idx, individual);
 		}		
 	}
-
-
-
 
 	/*******************************************************************
 	 * 						ACTIVATION FUNCTION 					   *
