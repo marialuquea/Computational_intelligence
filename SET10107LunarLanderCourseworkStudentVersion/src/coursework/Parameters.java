@@ -34,6 +34,14 @@ public class Parameters {
 	//set the NeuralNetwork class here to use your code from the GUI
 	public static Class neuralNetworkClass = ExampleHillClimber.class;
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * Do not change any methods that appear below here.
 	 * 

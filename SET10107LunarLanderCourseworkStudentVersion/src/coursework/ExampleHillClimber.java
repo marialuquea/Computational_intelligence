@@ -25,9 +25,9 @@ public class ExampleHillClimber extends NeuralNetwork{
 			if(candidate.fitness < best.fitness) {
 				best = candidate;
 			}
-			
 			outputStats();
 		}
+		System.out.println("----Saving NN");
 		saveNeuralNetwork();
 	}
 

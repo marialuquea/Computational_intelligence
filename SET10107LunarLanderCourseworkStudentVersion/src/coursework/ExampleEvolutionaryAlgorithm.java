@@ -22,6 +22,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 	@Override
 	public void run() {		
 		//Initialise a population of Individuals with random weights
+		System.out.println("Initialising weights...");
 		population = initialise();
 
 		//Record a copy of the best Individual in the population

@@ -19,11 +19,11 @@ public class StartNoGui {
 		 */
 
 		//Set the parameters here or directly in the Parameters Class
-		Parameters.maxEvaluations = 20000; // Used to terminate the EA after this many generations
-		Parameters.popSize = 200; // Population Size
+//		Parameters.maxEvaluations = 250; // Used to terminate the EA after this many generations
+//		Parameters.popSize = 200; // Population Size
 
 		//number of hidden nodes in the neural network
-		Parameters.setHidden(5);
+//		Parameters.setHidden(5);
 		
 		//Set the data set for training 
 		Parameters.setDataSet(DataSet.Training);
@@ -39,7 +39,7 @@ public class StartNoGui {
 		 * (these will have been saved to disk in the project default directory using 
 		 * the saveWeights method in EvolutionaryTrainer) 
 		 */
-		System.out.println(nn.best);
+		System.out.println("Best weights found: "+nn.best); // prints best fitness score
 		
 		
 		
@@ -52,7 +52,7 @@ public class StartNoGui {
 		 */
 		Parameters.setDataSet(DataSet.Test);
 		double fitness = Fitness.evaluate(nn);
-		System.out.println("Fitness on " + Parameters.getDataSet() + " " + fitness);
+		System.out.println("Fitness on " + Parameters.getDataSet() + " set: " + fitness);
 		
 		/**
 		 * Or We can reload the NN from the file generated during training and test it on a data set 
