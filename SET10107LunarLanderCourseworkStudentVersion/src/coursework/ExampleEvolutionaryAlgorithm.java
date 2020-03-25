@@ -1,6 +1,7 @@
 package coursework;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 import model.Fitness;
 import model.Individual;
@@ -43,8 +44,8 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 			 */
 
 			// Select 2 Individuals from the current population. Currently returns random Individual
-			Individual parent1 = select(); 
-			Individual parent2 = select();
+			Individual parent1 = RoulletteSelection();
+			Individual parent2 = RoulletteSelection();
 
 			// Generate a child by crossover. Not Implemented			
 			ArrayList<Individual> children = reproduce(parent1, parent2);			
@@ -115,35 +116,50 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		return population;
 	}
 
-	/**
-	 * Selection --
-	 * 
-	 * NEEDS REPLACED with proper selection this just returns a copy of a random
-	 * member of the population
-	 */
+	/*******************************************************************
+	 * 						SELECTION METHODS						   *
+	 *******************************************************************/
 	private Individual select() {		
 		Individual parent = population.get(Parameters.random.nextInt(Parameters.popSize));
 		return parent.copy();
 	}
+	private Individual RoulletteSelection()
+	{
+		Individual temp = new Individual();
 
-	/**
-	 * Crossover / Reproduction
-	 * 
-	 * NEEDS REPLACED with proper method this code just returns exact copies of the
-	 * parents. 
-	 */
+		double sum = 0;
+		for(Individual individual:population)
+		{
+			sum += 1 / individual.fitness;
+			temp = individual;
+		}
+
+		double random = ThreadLocalRandom.current().nextDouble(0, 1) * sum;
+
+		double counter = 0;
+		for(Individual individual:population)
+		{
+			counter += 1 / individual.fitness;
+			if (counter >= random)
+				return individual;
+		}
+
+		return temp;
+	}
+
+	/*******************************************************************
+	 * 						CROSSOVER METHODS						   *
+	 *******************************************************************/
 	private ArrayList<Individual> reproduce(Individual parent1, Individual parent2) {
 		ArrayList<Individual> children = new ArrayList<>();
 		children.add(parent1.copy());
 		children.add(parent2.copy());			
 		return children;
-	} 
-	
-	/**
-	 * Mutation
-	 * 
-	 * 
-	 */
+	}
+
+	/*******************************************************************
+	 * 						MUTATION METHODS						   *
+	 *******************************************************************/
 	private void mutate(ArrayList<Individual> individuals) {		
 		for(Individual individual : individuals) {
 			for (int i = 0; i < individual.chromosome.length; i++) {
