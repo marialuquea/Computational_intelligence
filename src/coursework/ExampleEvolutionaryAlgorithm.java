@@ -8,16 +8,12 @@ import model.Individual;
 import model.LunarParameters.DataSet;
 import model.NeuralNetwork;
 
-/**
- * Implements a basic Evolutionary Algorithm to train a Neural Network
- * 
- * You Can Use This Class to implement your EA or implement your own class that extends {@link NeuralNetwork} 
- * 
- */
-public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 
+public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
+{
 	@Override
-	public void run() {
+	public void run()
+	{
 		//Initialise a population of Individuals with random weights
 		System.out.println("Initialising weights...");
 		population = initialise();
@@ -26,43 +22,44 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		best = getBest();
 		System.out.println("Best From Initialisation " + best);
 
-		/**
-		 * main EA processing loop
-		 */		
-		
-		while (evaluations < Parameters.maxEvaluations) {
+		while (evaluations < Parameters.maxEvaluations)
+		{
+			if (evaluations % Parameters.reducePopSizeRate == 0){
+				System.out.println("Removing individual, pop size: "+population.size());
+				removeIndividual(); // every 30 iterations, remove worst individual
+				if (population.size() <= Parameters.minPopSize) {
+					refillPopulation();
+					System.out.println("Population refilled");
+				}
+			}
 
-			/**
-			 * this is a skeleton EA - you need to add the methods.
-			 * You can also change the EA if you want 
-			 * You must set the best Individual at the end of a run
-			 * 
-			 */
+			// SELECTING OPTIONS
+			Individual parent1 = tournamentSelection();
+			Individual parent2 = tournamentSelection();
+			//Individual parent1 = select();
+			//Individual parent 2 = select();
+			//Individual parent1 = RoulletteSelection();
+			//Individual parent2 = RoulletteSelection();
 
-			// Select 2 Individuals from the current population. Currently returns random Individual
-			Individual parent1 = RoulletteSelection();
-			Individual parent2 = RoulletteSelection();
+			// CROSSOVER OPTIONS
+			ArrayList<Individual> children = UniformCrossover(parent1, parent2);
+			//ArrayList<Individual> children = reproduce(parent1, parent2);
+			//ArrayList<Individual> children = doublePointCrossover(parent1, parent2);
 
-			// Generate a child by crossover. Not Implemented			
-			ArrayList<Individual> children = reproduce(parent1, parent2);			
-			
-			//mutate the offspring
-			mutate(children);
-			
-			// Evaluate the children
-			evaluateIndividuals(children);			
+			// MUTATION OPTIONS
+			swapMutation(children);
+			//mutate(children);
 
-			// Replace children in population
+			evaluateIndividuals(children);
 			replace(children);
-
-			// check to see if the best has improved
 			best = getBest();
-			
-			// Implemented in NN class. 
 			outputStats();
-			
-			//Increment number of completed generations			
+
+			//Increment number of completed generations
 		}
+
+		// Hill climber
+		hill_climber(best, 5000);
 
 		//save the trained network to disk
 		saveNeuralNetwork();
@@ -180,6 +177,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		return parent;
 	}
 
+
 	private Individual tournamentSelection()
 	{
 		ArrayList<Individual> candidates = new ArrayList<Individual>();
@@ -190,19 +188,25 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		return getBest().copy();
 	}
 
+
 	/*******************************************************************
 	 * 						CROSSOVER METHODS						   *
 	 *******************************************************************/
 	private ArrayList<Individual> reproduce(Individual parent1, Individual parent2) {
 		ArrayList<Individual> children = new ArrayList<>();
 		children.add(parent1.copy());
-		children.add(parent2.copy());			
+		children.add(parent2.copy());
 		return children;
 	}
 
-	private Individual UniformCrossover(Individual parent1, Individual parent2) {
+	private ArrayList<Individual> UniformCrossover(Individual parent1, Individual parent2) {
+		ArrayList<Individual> children = new ArrayList<>();
+
 		if(Parameters.random.nextDouble() > Parameters.crossoverProbability)
-			return parent1;
+		{
+			children.add(parent1);
+			return children;
+		}
 
 		Individual child1 = new Individual();
 
@@ -213,13 +217,18 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 			else
 				child1.chromosome[i] = parent2.chromosome[i];
 		}
-		return child1;
+		children.add(child1);
+		return children;
 	}
 
-	private Individual doublePointCrossover(Individual parent1, Individual parent2) {
+	private ArrayList<Individual> doublePointCrossover(Individual parent1, Individual parent2) {
+		ArrayList<Individual> children = new ArrayList<>();
 		// crossover probability
 		if (Parameters.random.nextDouble() > Parameters.crossoverProbability)
-			return parent1;
+		{
+			children.add(parent1);
+			return children;
+		}
 
 		Individual child = new Individual(); // new empty child
 
@@ -243,41 +252,46 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 		for (int i = crossoverPoint2; i < parent1.chromosome.length; i++)
 			child.chromosome[i] = parent1.chromosome[i];
 
-		return child;
+		children.add(child);
+		return children;
 	}
 
 	/*******************************************************************
 	 * 						MUTATION METHODS						   *
 	 *******************************************************************/
-	private void mutate(ArrayList<Individual> individuals) {		
-		for(Individual individual : individuals) {
-			for (int i = 0; i < individual.chromosome.length; i++) {
-				if (Parameters.random.nextDouble() < Parameters.mutateRate) {
-					if (Parameters.random.nextBoolean()) {
-						individual.chromosome[i] += (Parameters.mutateChange);
-					} else {
+	private void mutate(ArrayList<Individual> individuals) {
+		for(Individual individual : individuals)
+		{
+			for (int i = 0; i < individual.chromosome.length; i++)
+			{
+				if (Parameters.random.nextDouble() < Parameters.mutateRate)
+				{
+					if (Parameters.random.nextBoolean())
+						individual.chromosome[i] += (Parameters.mutateChange); // need to experiment with this
+					else
 						individual.chromosome[i] -= (Parameters.mutateChange);
-					}
 				}
 			}
-		}		
+		}
 	}
 
-	private Individual swapMutation(Individual child){
+	private void swapMutation(ArrayList<Individual> individuals)
+	{
+		for(Individual child : individuals)
+		{
+			// mutation probability
+			if(Parameters.random.nextDouble() < Parameters.mutationProbability)
+			{
+				int index1 = Parameters.random.nextInt(child.chromosome.length);
+				int index2 = Parameters.random.nextInt(child.chromosome.length);
+				double swap1 = child.chromosome[index1];
+				double swap2 = child.chromosome[index2];
+				double temp = swap1;
+				child.chromosome[index1] = swap2;
+				child.chromosome[index2] = temp;
+			}
+		}
 
-		// mutation probability
-		if(Parameters.random.nextDouble() > Parameters.mutationProbability)
-			return child;
-
-		int index1 = Parameters.random.nextInt(child.chromosome.length);
-		int index2 = Parameters.random.nextInt(child.chromosome.length);
-		double swap1 = child.chromosome[index1];
-		double swap2 = child.chromosome[index2];
-		double temp = swap1;
-		child.chromosome[index1] = swap2;
-		child.chromosome[index2] = temp;
-
-		return child;
 	}
 
 	/*******************************************************************
@@ -285,51 +299,46 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 	 *******************************************************************/
 	private void replace(ArrayList<Individual> individuals) {
 		for(Individual individual : individuals) {
-			int idx = getWorstIndex();		
+			int idx = getWorstIndex();
 			population.set(idx, individual);
-		}		
+		}
 	}
 
 	/*******************************************************************
 	 * 						DIVERSITY METHODS						   *
 	 *******************************************************************/
-	// DIVERSITY - SAWTOOTH & HILL CLIMBER
+	// SAWTOOTH
 	public void removeIndividual(){	population.remove(getWorst(population)); }
 
-	private void refillPopulation(int start, int bound) {
+	private void refillPopulation() {
 		// refill population with random seeds
-		while(population.size() < Parameters.popSize){
-			population2 = initialise(); // find out this
+		while(population.size() < Parameters.popSize)
+		{
 			Individual individual = new Individual();
-			individual.initialise(start, bound);
 			population.add(individual);
 		}
 	}
 
-	/**
-	 *  CHECK THIS FUNCTION - NOT FINISHED
-	 * @param i
-	 * @return
-	 */
-	private Individual hill_climber(Individual i){
-
+	// Hill Climber
+	private Individual hill_climber(Individual i, int iterations) {
 		System.out.println("\n---HILL CLIMBER---");
 		Individual best = i.copy();
 		Individual temp = i.copy(); // the best seed after running the EA
 		double before = temp.fitness;
 
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < iterations; j++)
 		{
-			// change the value of 1 pacing value
+			// change the value of 1 value
 			int mutationChange = Parameters.random.nextInt(1); // check
-			int index_pacing = Parameters.random.nextInt(temp.chromosome.length);
+			int index = Parameters.random.nextInt(temp.chromosome.length);
 
 			// ensure mutation is valid
-			if (temp.chromosome[index_pacing] + mutationChange <= 1)
-				temp.chromosome[index_pacing] = temp.chromosome[index_pacing] + mutationChange;
+			if (temp.chromosome[index] + mutationChange <= 1)
+				temp.chromosome[index] = temp.chromosome[index] + mutationChange;
 
 			// if after mutation, individual is better, now work on that one
-			if (temp.fitness <  best.fitness) {
+			if (temp.fitness <  best.fitness)
+			{
 				best = temp.copy();
 				System.out.println("better: "+best.fitness+" at iteration "+j);
 			}
@@ -347,12 +356,18 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork {
 	public double activationFunction(double x)
 	{
 		if (x < -20.0)
-		{
 			return -1.0;
-		} else if (x > 20.0)
-		{
+		else if (x > 20.0)
 			return 1.0;
-		}
 		return Math.tanh(x);
 	}
+	/*
+	public double sinAF(double x) { return Math.sin(x); }
+
+	@Override
+	public double activationFunction(double x) { return Math.max(0, x); }
+
+	public double sigmoidAF(double x) { return (1/(1 + Math.pow(Math.E,(-1*x)))); }
+
+	 */
 }

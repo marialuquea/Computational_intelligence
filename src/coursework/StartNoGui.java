@@ -10,27 +10,23 @@ import model.NeuralNetwork;
  * The code runs faster when not required to update a user interface
  *
  */
-public class StartNoGui {
-
-	public static void main(String[] args) {
-		/**
-		 * Train the Neural Network using our Evolutionary Algorithm 
-		 * 
-		 */
-
+public class StartNoGui
+{
+	public static void main(String[] args)
+	{
 		//Set the parameters here or directly in the Parameters Class
-//		Parameters.maxEvaluations = 250; // Used to terminate the EA after this many generations
-//		Parameters.popSize = 200; // Population Size
+		//Parameters.maxEvaluations = 20000; // Used to terminate the EA after this many generations
+		//Parameters.popSize = 200; // Population Size
 
 		//number of hidden nodes in the neural network
-//		Parameters.setHidden(5);
+		Parameters.setHidden(5);
 		
 		//Set the data set for training 
 		Parameters.setDataSet(DataSet.Training);
 		
 		
 		//Create a new Neural Network Trainer Using the above parameters 
-		NeuralNetwork nn = new ExampleEvolutionaryAlgorithm();		
+		NeuralNetwork nn = new ExampleEvolutionaryAlgorithm();
 		
 		//train the neural net (Go and have a coffee) 
 		nn.run();
@@ -39,7 +35,7 @@ public class StartNoGui {
 		 * (these will have been saved to disk in the project default directory using 
 		 * the saveWeights method in EvolutionaryTrainer) 
 		 */
-		System.out.println("Best weights found: "+nn.best); // prints best fitness score
+		System.out.println(nn.best);
 		
 		
 		
@@ -52,7 +48,7 @@ public class StartNoGui {
 		 */
 		Parameters.setDataSet(DataSet.Test);
 		double fitness = Fitness.evaluate(nn);
-		System.out.println("Fitness on " + Parameters.getDataSet() + " set: " + fitness);
+		System.out.println("Fitness on " + Parameters.getDataSet() + " " + fitness);
 		
 		/**
 		 * Or We can reload the NN from the file generated during training and test it on a data set 
