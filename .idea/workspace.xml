@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8dd97f54-ed08-475f-93fb-0140e4a702ca" name="Default Changelist" comment="" />
+    <list default="true" id="f4de6c65-9f39-4e0a-9bb0-2dc3da23b7a4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectId" id="1Zilbw36tUOfdMxvuYlmGhwiDMM" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1ZkyzY3zJqY0tHOXFT0jm07pQNA" />
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -21,23 +28,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.StartGui">
+  <component name="RunManager">
     <configuration name="StartGui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="coursework.StartGui" />
-      <module name="SET10107Coursework2020" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="coursework.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StartNoGui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="coursework.StartNoGui" />
-      <module name="SET10107Coursework2020" />
+      <module name="Computational_intelligence" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="coursework.*" />
@@ -51,7 +45,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.StartGui" />
-        <item itemvalue="Application.StartNoGui" />
       </list>
     </recent_temporary>
   </component>
@@ -60,12 +53,23 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8dd97f54-ed08-475f-93fb-0140e4a702ca" name="Default Changelist" comment="" />
-      <created>1585329870571</created>
+      <changelist id="f4de6c65-9f39-4e0a-9bb0-2dc3da23b7a4" name="Default Changelist" comment="" />
+      <created>1585397649733</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1585329870571</updated>
+      <updated>1585397649733</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
