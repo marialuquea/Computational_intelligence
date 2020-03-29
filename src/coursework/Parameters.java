@@ -14,7 +14,7 @@ public class Parameters
 	public static double maxGene = +3;
 
 	public static int popSize = 50;
-	public static int maxEvaluations = 20000;
+	public static int maxEvaluations = 500;
 	public static int tournamentSize = 7;
 
 	public static int reducePopSizeRate = 30;

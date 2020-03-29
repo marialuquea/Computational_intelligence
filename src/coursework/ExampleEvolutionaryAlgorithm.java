@@ -1,6 +1,9 @@
 package coursework;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import model.Fitness;
@@ -57,6 +60,9 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 
 			//Increment number of completed generations
 		}
+
+		System.out.println("max in ACTIVATION FUNCTION: "+ Collections.max(numbers));
+		System.out.println("min in ACTIVATION FUNCTION: "+ Collections.min(numbers));
 
 		// Hill climber
 		hill_climber(best, 5000);
@@ -349,25 +355,25 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		return best;
 	}
 
+
 	/*******************************************************************
 	 * 						ACTIVATION FUNCTION 					   *
 	 *******************************************************************/
+	public ArrayList<Double> numbers = new ArrayList<Double>();
+
 	@Override
 	public double activationFunction(double x)
 	{
+		numbers.add(x);
 		if (x < -20.0)
 			return -1.0;
 		else if (x > 20.0)
 			return 1.0;
 		return Math.tanh(x);
+		//return Math.sin(x);
+		//return Math.max(0, x);
+		//return (1/(1+(Math.exp(-x)))); // does not work
+		//return (1/(1 + Math.pow(Math.E,(-1*x)))); // does not work
 	}
-	/*
-	public double sinAF(double x) { return Math.sin(x); }
 
-	@Override
-	public double activationFunction(double x) { return Math.max(0, x); }
-
-	public double sigmoidAF(double x) { return (1/(1 + Math.pow(Math.E,(-1*x)))); }
-
-	 */
 }
