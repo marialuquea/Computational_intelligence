@@ -1,5 +1,6 @@
 package coursework;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -15,12 +16,13 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	private String [] crossover = Parameters.crossover;
 	private String [] mutation = Parameters.mutation;
 	private String [] diversity = Parameters.diversity;
+	private String [] replacement = Parameters.replacement;
 
 	@Override
 	public void run()
 	{
-		//runAlgorithm();
-		testAlgorithm();
+		runAlgorithm(selection[2], crossover[1], mutation[0], diversity[1], replacement[0]);
+		//testAlgorithm();
 	}
 
 	public void testAlgorithm()
@@ -29,12 +31,12 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		for (int i = 0; i <= times; i++)
 		{
 			System.out.println("--i: "+i+"\n");
-			runAlgorithm(selection[i], crossover[i], mutation[i], diversity[i]);
+			runAlgorithm(selection[i], crossover[i], mutation[i], diversity[i], replacement[i]);
 		}
 
 	}
 
-	public void runAlgorithm(String selection, String crossover, String mutation, String diversity)
+	public void runAlgorithm(String selection, String crossover, String mutation, String diversity, String replace)
 	{
 		//Initialise a population of Individuals with random weights
 		population = initialise();
@@ -86,8 +88,8 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 
 			// Evaluate new children and replace with worst in population
 			evaluateIndividuals(children);
-			//replace(children);
-			tournamentReplacement(children);
+			if (replace.equals("replaceWorst")) { replaceWorst(children); }
+			if (replace.equals("tournament")) { tournamentReplacement(children); }
 			best = getBest();
 			outputStats();
 
@@ -98,8 +100,8 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		//System.out.println("min in ACTIVATION FUNCTION: "+ Collections.min(numbers));
 
 		// Hill climber
-		if (diversity.equals("hillclimber"))
-			hill_climber(best, 5000);
+		//if (diversity.equals("hillclimber"))
+		hill_climber(best, 20000);
 
 		//save the trained network to disk
 		saveNeuralNetwork();
@@ -333,18 +335,17 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	/*******************************************************************
 	 * 						REPLACEMENT METHODS						   *
 	 *******************************************************************/
-	private void replace(ArrayList<Individual> individuals) {
-		for(Individual individual : individuals) {
-			int idx = getWorstIndex(individuals);
+	// FITNESS BASED
+	private void replaceWorst(ArrayList<Individual> children) {
+		for(Individual individual : children) {
+			int idx = getWorstIndex(children);
 			population.set(idx, individual);
 		}
 	}
 
-	private void tournamentReplacement(ArrayList<Individual> children)
-	{
+	private void tournamentReplacement(ArrayList<Individual> children) {
 		ArrayList<Individual> candidates = new ArrayList<Individual>();
-		while (candidates.size() <= Parameters.tournamentSize -1)
-		{
+		while (candidates.size() <= Parameters.tournamentSize -1) {
 			Individual toAdd = population.get(Parameters.random.nextInt(population.size()));
 			if (!candidates.contains(toAdd))
 				candidates.add(toAdd);
@@ -352,19 +353,23 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 
 		// For every new child (2 new ones) replace them with the worsts in the candidates list from above
 		for(Individual child : children) {
-			System.out.println("----New child: "+ child.toString());
-			//Individual worst_candidate = getWorst(candidates); // worst candidate in tournament list
 			int worst_idx = getWorstIndex(candidates);
-			System.out.println("worst candidate index: "+ worst_idx);
-			Individual worst_candidate = candidates.remove(worst_idx);
-			System.out.println("worst candidate: "+worst_candidate.toString());
-			System.out.println("candidates size after remove: "+candidates.size());
+			Individual worst_candidate = candidates.remove(worst_idx); // get and remove the worst candidate from the list
 			int idx = population.indexOf(worst_candidate); // index of candidate in original population list
-			System.out.println("index in population: "+idx);
-			population.set(idx, child);
-			System.out.println("Index "+idx+" replaced with "+child.toString());
+			population.set(idx, child); // replace worst in candidates with new child
 		}
 	}
+
+	// RANDOM
+	private void replaceRandom(ArrayList<Individual> children){
+		for (Individual child : children){
+			Individual random = population.get(Parameters.random.nextInt(population.size()));
+			int randIndex = Parameters.random.nextInt(population.size());
+			population.set(randIndex, random);
+		}
+	}
+
+	// Future work - Aged based
 
 	/*******************************************************************
 	 * 						DIVERSITY METHODS						   *
@@ -414,12 +419,10 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	/*******************************************************************
 	 * 						ACTIVATION FUNCTION 					   *
 	 *******************************************************************/
-	public ArrayList<Double> numbers = new ArrayList<Double>();
 
 	@Override
 	public double activationFunction(double x)
 	{
-		numbers.add(x);
 		if (x < -20.0)
 			return -1.0;
 		else if (x > 20.0)
