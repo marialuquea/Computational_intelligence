@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4de6c65-9f39-4e0a-9bb0-2dc3da23b7a4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/coursework/TestAndExportData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Computational_intelligence/coursework/StartNoGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Computational_intelligence/coursework/StartNoGui.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/coursework/ExampleEvolutionaryAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/ExampleEvolutionaryAlgorithm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/coursework/Parameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/Parameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coursework/StartNoGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/StartNoGui.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,10 +15,20 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1ZkyzY3zJqY0tHOXFT0jm07pQNA" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -28,7 +41,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.StartGui">
+  <component name="RunManager" selected="Application.StartNoGui">
     <configuration name="StartGui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="coursework.StartGui" />
       <module name="Computational_intelligence" />
@@ -57,8 +70,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StartGui" />
         <item itemvalue="Application.StartNoGui" />
+        <item itemvalue="Application.StartGui" />
       </list>
     </recent_temporary>
   </component>

@@ -15,7 +15,7 @@ public class StartNoGui
 	public static void main(String[] args)
 	{
 		//Set the parameters here or directly in the Parameters Class
-		//Parameters.maxEvaluations = 20000; // Used to terminate the EA after this many generations
+		Parameters.maxEvaluations = 500; // Used to terminate the EA after this many generations
 		//Parameters.popSize = 200; // Population Size
 
 		//number of hidden nodes in the neural network
