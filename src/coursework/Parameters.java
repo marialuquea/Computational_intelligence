@@ -23,12 +23,12 @@ public class Parameters
 	// Parameters for mutation
 	// Rate = probability of changing a gene
 	// Change = the maximum +/- adjustment to the gene value
-	public static double mutateRate = 0.07; // mutation rate for mutation operator
+	public static double mutateRate = 0.04; // mutation rate for mutation operator
 	public static double mutateChange = 0.1; // delta change for mutation operator
 	public static double crossoverProbability = 0.5;
 	public static double mutationProbability = 0.5;
 
-	public static String [] selection = {"select","roulette", "tournament"};
+	public static String [] selection = {"select", "roulette", "tournament"};
 	public static String [] crossover = {"reproduce", "uniform", "doublepoint"};
 	public static String [] mutation = {"mutate", "swap"};
 	public static String [] diversity = {"hillclimber", "sawtooth"};

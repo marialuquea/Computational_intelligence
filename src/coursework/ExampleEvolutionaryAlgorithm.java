@@ -1,12 +1,10 @@
 package coursework;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import model.Fitness;
 import model.Individual;
-import model.LunarParameters.DataSet;
 import model.NeuralNetwork;
 
 
@@ -38,6 +36,8 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 
 	public void runAlgorithm(String selection, String crossover, String mutation, String diversity, String replace)
 	{
+		//System.out.println(selection + crossover+ mutation+ diversity+ replace);
+
 		//Initialise a population of Individuals with random weights
 		population = initialise();
 		System.out.println("Population initialized: "+population.size());
@@ -45,6 +45,30 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		//Record a copy of the best Individual in the population
 		best = getBest();
 		System.out.println("Best From Initialisation " + best);
+
+
+		// ISLAND MODELS
+		/*
+		ArrayList<Individual> island1 = new ArrayList<Individual>();
+		ArrayList<Individual> island2 = new ArrayList<Individual>();
+		ArrayList<Individual> island3 = new ArrayList<Individual>();
+		ArrayList<ArrayList<Individual>> islands = new ArrayList<>();
+		islands.add(island1);
+		islands.add(island2);
+		islands.add(island3);
+		for (ArrayList<Individual> island : islands)
+		{
+			for (int i = 0; i < Parameters.popSize; ++i) {
+				Individual individual = new Individual();
+				individual.fitness = Fitness.evaluate(individual, this);
+				island.add(individual);
+			}
+		}
+		System.out.println("Island 1 size: "+island1.size());
+		System.out.println("Island 2 size: "+island2.size());
+		System.out.println("Island 3 size: "+island3.size());
+
+		 */
 
 		while (evaluations < Parameters.maxEvaluations)
 		{
@@ -58,38 +82,39 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 				}
 			}
 
+
 			// SELECTING OPTIONS
-			Individual parent1 = new Individual();
-			Individual parent2 = new Individual();
-			if (selection.equals("select"))
-			{
-				parent1 = select();
-				parent2 = select();
-			}
-			if (selection.equals("roulette")){
-				parent1 = RoulletteSelection();
-				parent2 = RoulletteSelection();
-			}
-			if (selection.equals("tournament"))
-			{
-				parent1 = tournamentSelection();
-				parent2 = tournamentSelection();
-			}
+			Individual parent1 = selectingOptions(selection);
+			Individual parent2 = selectingOptions(selection);
+
+
+
 
 			// CROSSOVER OPTIONS
-			ArrayList<Individual> children = new ArrayList<>();
-			if (crossover.equals("reproduce")){ children = reproduce(parent1, parent2);	}
-			if (crossover.equals("uniform")) { children = UniformCrossover(parent1, parent2); }
-			if (crossover.equals("doublepoint")) { children = doublePointCrossover(parent1, parent2); }
+			//ArrayList<Individual> children = crossoverOptions(crossover, parent1, parent2);
+			//ArrayList<Individual> children = new ArrayList<>();
+			ArrayList<Individual> children = uniformCrossover(parent1, parent2);
+			/*
+			if (crossover.equals("reproduce"))
+				children = reproduce(parent1, parent2);
+			if (crossover.equals("uniform"))
+				children = uniformCrossover(parent1, parent2);
+			if (crossover.equals("doublepoint"))
+				children = doublePointCrossover(parent1, parent2);
+
+			 */
 
 			// MUTATION OPTIONS
+			swapMutation(children); /*
 			if (mutation.equals("mutate")) { mutate(children); }
 			if (mutation.equals("swap")) { swapMutation(children); }
+			*/
 
 			// Evaluate new children and replace with worst in population
 			evaluateIndividuals(children);
-			if (replace.equals("replaceWorst")) { replaceWorst(children); }
-			if (replace.equals("tournament")) { tournamentReplacement(children); }
+			replaceWorst(children);
+			//if (replace.equals("replaceWorst")) { replaceWorst(children); }
+			//if (replace.equals("tournament")) { tournamentReplacement(children); }
 			best = getBest();
 			outputStats();
 
@@ -153,12 +178,11 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		for (int i = 0; i < individuals.size(); i++)
 		{
 			Individual individual = individuals.get(i);
-			if (worst == null)
-			{
+			if (worst == null){
 				worst = individual;
 				idx = i;
-			} else if (individual.fitness > worst.fitness)
-			{
+			}
+			else if (individual.fitness > worst.fitness){
 				worst = individual;
 				idx = i;
 			}
@@ -187,13 +211,26 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	/*******************************************************************
 	 * 						SELECTION METHODS						   *
 	 *******************************************************************/
+	private Individual selectingOptions(String selection)
+	{
+		Individual parent = new Individual();
+		if (selection.equals("select"))
+			parent = select();
+		if (selection.equals("roulette"))
+			parent = rouletteSelection();
+		if (selection.equals("tournament"))
+			parent = tournamentSelection();
+
+		return parent;
+	}
+
 	private Individual select()
 	{
-		Individual parent = population.get(Parameters.random.nextInt(Parameters.popSize));
+		Individual parent = population.get(Parameters.random.nextInt(population.size()));
 		return parent.copy();
 	}
 
-	private Individual RoulletteSelection()
+	private Individual rouletteSelection()
 	{
 		Individual parent = new Individual();
 
@@ -230,6 +267,20 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	/*******************************************************************
 	 * 						CROSSOVER METHODS						   *
 	 *******************************************************************/
+	private ArrayList<Individual> crossoverOptions(String crossover, Individual parent1, Individual parent2)
+	{
+		System.out.println("CROSSOVER OPTIONS");
+		ArrayList<Individual> children = new ArrayList<>();
+		if (crossover.equals("reproduce"))
+			children = reproduce(parent1, parent2);
+		if (crossover.equals("uniform"))
+			children = uniformCrossover(parent1, parent2);
+		if (crossover.equals("doublepoint"))
+			children = doublePointCrossover(parent1, parent2);
+
+		return children;
+	}
+
 	private ArrayList<Individual> reproduce(Individual parent1, Individual parent2) {
 		ArrayList<Individual> children = new ArrayList<>();
 		children.add(parent1.copy());
@@ -237,7 +288,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		return children;
 	}
 
-	private ArrayList<Individual> UniformCrossover(Individual parent1, Individual parent2) {
+	private ArrayList<Individual> uniformCrossover(Individual parent1, Individual parent2) {
 		ArrayList<Individual> children = new ArrayList<>();
 
 		if(Parameters.random.nextDouble() > Parameters.crossoverProbability)
@@ -336,9 +387,9 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	 * 						REPLACEMENT METHODS						   *
 	 *******************************************************************/
 	// FITNESS BASED
-	private void replaceWorst(ArrayList<Individual> children) {
-		for(Individual individual : children) {
-			int idx = getWorstIndex(children);
+	private void replaceWorst(ArrayList<Individual> individuals) {
+		for(Individual individual : individuals) {
+			int idx = getWorstIndex(population);
 			population.set(idx, individual);
 		}
 	}
