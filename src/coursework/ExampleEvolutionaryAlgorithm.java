@@ -94,9 +94,10 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 
 			// Evaluate new children and replace with worst in population
 			evaluateIndividuals(children);
-			replaceWorst(children);
-			//if (replace.equals("replaceWorst")) { replaceWorst(children); }
-			//if (replace.equals("tournament")) { tournamentReplacement(children); }
+
+			// REPLACEMENT OPTIONS
+			replacementOptions(replace, children);
+
 			best = getBest();
 			outputStats();
 
@@ -246,8 +247,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	/*******************************************************************
 	 * 						CROSSOVER METHODS						   *
 	 *******************************************************************/
-	private ArrayList<Individual> crossoverOptions(String crossover, Individual parent1, Individual parent2)
-	{
+	private ArrayList<Individual> crossoverOptions(String crossover, Individual parent1, Individual parent2) {
 		ArrayList<Individual> children = new ArrayList<>();
 		if (crossover.equals("reproduce"))
 			children = reproduce(parent1, parent2);
@@ -371,6 +371,13 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	/*******************************************************************
 	 * 						REPLACEMENT METHODS						   *
 	 *******************************************************************/
+	private void replacementOptions(String replace, ArrayList<Individual> children) {
+		if (replace.equals("replaceWorst"))
+			replaceWorst(children);
+		if (replace.equals("tournament"))
+			tournamentReplacement(children);
+	}
+
 	// FITNESS BASED
 	private void replaceWorst(ArrayList<Individual> individuals) {
 		for(Individual individual : individuals) {
