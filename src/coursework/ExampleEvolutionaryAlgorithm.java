@@ -82,7 +82,6 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 				}
 			}
 
-
 			// SELECTING OPTIONS
 			Individual parent1 = selectingOptions(selection);
 			Individual parent2 = selectingOptions(selection);
@@ -91,10 +90,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 			ArrayList<Individual> children = crossoverOptions(crossover, parent1, parent2);
 
 			// MUTATION OPTIONS
-			swapMutation(children); /*
-			if (mutation.equals("mutate")) { mutate(children); }
-			if (mutation.equals("swap")) { swapMutation(children); }
-			*/
+			mutationOptions(mutation, children);
 
 			// Evaluate new children and replace with worst in population
 			evaluateIndividuals(children);
@@ -106,9 +102,6 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 
 			//Increment number of completed generations
 		}
-
-		//System.out.println("max in ACTIVATION FUNCTION: "+ Collections.max(numbers));
-		//System.out.println("min in ACTIVATION FUNCTION: "+ Collections.min(numbers));
 
 		// Hill climber
 		//if (diversity.equals("hillclimber"))
@@ -333,6 +326,13 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	/*******************************************************************
 	 * 						MUTATION METHODS						   *
 	 *******************************************************************/
+	private void mutationOptions(String mutation, ArrayList<Individual> children) {
+		if (mutation.equals("mutate"))
+			mutate(children);
+		if (mutation.equals("swap"))
+			swapMutation(children);
+	}
+
 	private void mutate(ArrayList<Individual> individuals) {
 		for(Individual individual : individuals)
 		{
