@@ -87,22 +87,8 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 			Individual parent1 = selectingOptions(selection);
 			Individual parent2 = selectingOptions(selection);
 
-
-
-
 			// CROSSOVER OPTIONS
-			//ArrayList<Individual> children = crossoverOptions(crossover, parent1, parent2);
-			//ArrayList<Individual> children = new ArrayList<>();
-			ArrayList<Individual> children = uniformCrossover(parent1, parent2);
-			/*
-			if (crossover.equals("reproduce"))
-				children = reproduce(parent1, parent2);
-			if (crossover.equals("uniform"))
-				children = uniformCrossover(parent1, parent2);
-			if (crossover.equals("doublepoint"))
-				children = doublePointCrossover(parent1, parent2);
-
-			 */
+			ArrayList<Individual> children = crossoverOptions(crossover, parent1, parent2);
 
 			// MUTATION OPTIONS
 			swapMutation(children); /*
@@ -269,7 +255,6 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	 *******************************************************************/
 	private ArrayList<Individual> crossoverOptions(String crossover, Individual parent1, Individual parent2)
 	{
-		System.out.println("CROSSOVER OPTIONS");
 		ArrayList<Individual> children = new ArrayList<>();
 		if (crossover.equals("reproduce"))
 			children = reproduce(parent1, parent2);
