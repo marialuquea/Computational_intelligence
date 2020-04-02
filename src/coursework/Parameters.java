@@ -20,6 +20,9 @@ public class Parameters
 	public static int reducePopSizeRate = 30;
 	public static int minPopSize = 20;
 
+	private static String [] activations = {"tanh", "relu", "selu", "step"};
+	public static String activation = activations[0];
+
 	// Parameters for mutation
 	// Rate = probability of changing a gene
 	// Change = the maximum +/- adjustment to the gene value
@@ -30,7 +33,7 @@ public class Parameters
 
 	public static String [] selection = {"select", "roulette", "tournament"};
 	public static String [] crossover = {"reproduce", "uniform", "doublepoint"};
-	public static String [] mutation = {"mutate", "swap"};
+	public static String [] mutation = {"mutate", "swap", "constrained"};
 	public static String [] diversity = {"hillclimber", "sawtooth"};
 	public static String [] replacement = {"replaceWorst", "tournament", "random"};
 

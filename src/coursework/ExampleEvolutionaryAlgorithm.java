@@ -19,7 +19,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	@Override
 	public void run()
 	{
-		runAlgorithm(selection[2], crossover[1], mutation[0], diversity[1], replacement[0]);
+		runAlgorithm(selection[2], crossover[1], mutation[2], diversity[1], replacement[0]);
 		//testAlgorithm();
 	}
 
@@ -327,10 +327,9 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	 * 						MUTATION METHODS						   *
 	 *******************************************************************/
 	private void mutationOptions(String mutation, ArrayList<Individual> children) {
-		if (mutation.equals("mutate"))
-			mutate(children);
-		if (mutation.equals("swap"))
-			swapMutation(children);
+		if (mutation.equals("mutate")) mutate(children);
+		if (mutation.equals("swap")) swapMutation(children);
+		if (mutation.equals("constrained")) constrainedMutation(children);
 	}
 
 	private void mutate(ArrayList<Individual> individuals) {
@@ -365,8 +364,31 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 				child.chromosome[index2] = temp;
 			}
 		}
-
 	}
+
+	private void constrainedMutation(ArrayList<Individual> individuals)
+    {
+        for(Individual individual : individuals)
+        {
+            for (int i = 0; i < individual.chromosome.length; i++)
+            {
+                if (Parameters.random.nextDouble() < Parameters.mutateRate)
+                {
+                    double before = individual.fitness;
+                    if (Parameters.random.nextBoolean()) { // add mutation
+                        individual.chromosome[i] += (Parameters.mutateChange);
+                        individual.fitness = Fitness.evaluate(individual, this);
+                        if (individual.fitness > before) individual.chromosome[i] -= (Parameters.mutateChange);
+                    }
+                    else { // subtract mutation
+                        individual.chromosome[i] -= (Parameters.mutateChange);
+                        individual.fitness = Fitness.evaluate(individual, this);
+                        if (individual.fitness > before) individual.chromosome[i] += (Parameters.mutateChange);
+                    }
+                }
+            }
+        }
+    }
 
 	/*******************************************************************
 	 * 						REPLACEMENT METHODS						   *
@@ -466,15 +488,27 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	@Override
 	public double activationFunction(double x)
 	{
-		if (x < -20.0)
-			return -1.0;
-		else if (x > 20.0)
-			return 1.0;
-		return Math.tanh(x);
-		//return Math.sin(x);
-		//return Math.max(0, x);
-		//return (1/(1+(Math.exp(-x)))); // does not work
-		//return (1/(1 + Math.pow(Math.E,(-1*x)))); // does not work
+	    if (Parameters.activation.equals("tanh")) {
+            if (x < -20.0) return -1.0;
+            else if (x > 20.0) return 1.0;
+            return Math.tanh(x);
+        }
+        if (Parameters.activation.equals("relu"))
+        {
+            if (x > 0) return x;
+            return -1;
+        }
+        if (Parameters.activation.equals("selu"))
+        {
+            if (x > 0) return x * 1.0507009;
+            return 1.0507009 * (1.673263 * Math.pow(Math.E, x)) - 1.673263;
+        }
+        if (Parameters.activation.equals("step"))
+        {
+            if (x <= 0) return -1.00;
+            return 1.0;
+        }
+        return x;
 	}
 
 }
