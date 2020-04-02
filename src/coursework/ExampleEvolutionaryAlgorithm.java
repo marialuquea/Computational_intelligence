@@ -191,27 +191,20 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	/*******************************************************************
 	 * 						SELECTION METHODS						   *
 	 *******************************************************************/
-	private Individual selectingOptions(String selection)
-	{
+	private Individual selectingOptions(String selection) {
 		Individual parent = new Individual();
-		if (selection.equals("select"))
-			parent = select();
-		if (selection.equals("roulette"))
-			parent = rouletteSelection();
-		if (selection.equals("tournament"))
-			parent = tournamentSelection();
-
+		if (selection.equals("select")) parent = select();
+		if (selection.equals("roulette")) parent = rouletteSelection();
+		if (selection.equals("tournament")) parent = tournamentSelection();
 		return parent;
 	}
 
-	private Individual select()
-	{
+	private Individual select() {
 		Individual parent = population.get(Parameters.random.nextInt(population.size()));
 		return parent.copy();
 	}
 
-	private Individual rouletteSelection()
-	{
+	private Individual rouletteSelection() {
 		Individual parent = new Individual();
 
 		double total = 0;
@@ -234,8 +227,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		return parent;
 	}
 
-	private Individual tournamentSelection()
-	{
+	private Individual tournamentSelection() {
 		ArrayList<Individual> candidates = new ArrayList<Individual>();
 		for(int i = 0; i < Parameters.tournamentSize; i++)
 		{
@@ -249,13 +241,9 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	 *******************************************************************/
 	private ArrayList<Individual> crossoverOptions(String crossover, Individual parent1, Individual parent2) {
 		ArrayList<Individual> children = new ArrayList<>();
-		if (crossover.equals("reproduce"))
-			children = reproduce(parent1, parent2);
-		if (crossover.equals("uniform"))
-			children = uniformCrossover(parent1, parent2);
-		if (crossover.equals("doublepoint"))
-			children = doublePointCrossover(parent1, parent2);
-
+		if (crossover.equals("reproduce")) children = reproduce(parent1, parent2);
+		if (crossover.equals("uniform")) children = uniformCrossover(parent1, parent2);
+		if (crossover.equals("doublepoint")) children = doublePointCrossover(parent1, parent2);
 		return children;
 	}
 
@@ -348,8 +336,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		}
 	}
 
-	private void swapMutation(ArrayList<Individual> individuals)
-	{
+	private void swapMutation(ArrayList<Individual> individuals) {
 		for(Individual child : individuals)
 		{
 			// mutation probability
@@ -366,8 +353,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		}
 	}
 
-	private void constrainedMutation(ArrayList<Individual> individuals)
-    {
+	private void constrainedMutation(ArrayList<Individual> individuals) {
         for(Individual individual : individuals)
         {
             for (int i = 0; i < individual.chromosome.length; i++)
