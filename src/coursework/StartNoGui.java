@@ -26,7 +26,7 @@ public class StartNoGui
 		
 		
 		//Create a new Neural Network Trainer Using the above parameters 
-		NeuralNetwork nn = new ExampleEvolutionaryAlgorithm();
+		NeuralNetwork nn = new IslandModels();
 		
 		//train the neural net (Go and have a coffee) 
 		nn.run();
