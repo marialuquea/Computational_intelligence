@@ -31,6 +31,7 @@ public class Parameters
 	public static double crossoverProbability = 0.5;
 	public static double mutationProbability = 0.5;
 
+	public static String [] initialisation = {"random", "best"};
 	public static String [] selection = {"select", "roulette", "tournament"};
 	public static String [] crossover = {"reproduce", "uniform", "doublepoint"};
 	public static String [] mutation = {"mutate", "swap", "constrained"};

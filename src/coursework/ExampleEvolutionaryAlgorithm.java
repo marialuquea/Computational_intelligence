@@ -10,6 +10,7 @@ import model.NeuralNetwork;
 
 public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 {
+    private String [] initialisation = Parameters.initialisation;
 	private String [] selection = Parameters.selection;
 	private String [] crossover = Parameters.crossover;
 	private String [] mutation = Parameters.mutation;
@@ -19,7 +20,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	@Override
 	public void run()
 	{
-		runAlgorithm(selection[2], crossover[1], mutation[2], diversity[1], replacement[0]);
+		runAlgorithm(initialisation[1], selection[2], crossover[1], mutation[2], diversity[1], replacement[0]);
 		//testAlgorithm();
 	}
 
@@ -29,17 +30,17 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		for (int i = 0; i <= times; i++)
 		{
 			System.out.println("--i: "+i+"\n");
-			runAlgorithm(selection[i], crossover[i], mutation[i], diversity[i], replacement[i]);
+			runAlgorithm(initialisation[1], selection[i], crossover[i], mutation[i], diversity[i], replacement[i]);
 		}
 
 	}
 
-	public void runAlgorithm(String selection, String crossover, String mutation, String diversity, String replace)
+	public void runAlgorithm(String initMode, String selection, String crossover, String mutation, String diversity, String replace)
 	{
 		//System.out.println(selection + crossover+ mutation+ diversity+ replace);
 
 		//Initialise a population of Individuals with random weights
-		population = initialise();
+		population = initialisingOptions(initMode);
 		System.out.println("Population initialized: "+population.size());
 
 		//Record a copy of the best Individual in the population
@@ -140,18 +141,6 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		return best;
 	}
 
-	private ArrayList<Individual> initialise() {
-		population = new ArrayList<>();
-		for (int i = 0; i < Parameters.popSize; ++i)
-		{
-			//chromosome weights are initialised randomly in the constructor
-			Individual individual = new Individual();
-			population.add(individual);
-		}
-		evaluateIndividuals(population);
-		return population;
-	}
-
 	private int getWorstIndex(ArrayList<Individual> individuals) {
 		Individual worst = null;
 		int idx = -1;
@@ -188,13 +177,49 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		}
 	}
 
+    /*******************************************************************
+     * 				    	INITIALISATION METHODS					   *
+     *******************************************************************/
+    private ArrayList<Individual> initialisingOptions(String initMode) {
+        population = new ArrayList<>();
+        if (initMode.equals("random"))  population = initialiseRandom();
+        if (initMode.equals("best"))    population = initialiseBest();
+        return population;
+    }
+
+    private ArrayList<Individual> initialiseRandom() {
+        for (int i = 0; i < Parameters.popSize; ++i)
+        {
+            //chromosome weights are initialised randomly in the constructor
+            Individual individual = new Individual();
+            population.add(individual);
+        }
+        evaluateIndividuals(population);
+        return population;
+    }
+
+    private ArrayList<Individual> initialiseBest() {
+        for (int i = 0; i < Parameters.popSize; ++i)
+        {
+            Individual ind1 = new Individual();
+            Individual ind2 = new Individual();
+
+            ind1.fitness = Fitness.evaluate(ind1, this);
+            ind2.fitness = Fitness.evaluate(ind2, this);
+
+            if (ind1.fitness < ind2.fitness) population.add(ind1);
+            else population.add(ind2);
+        }
+        return population;
+    }
+
 	/*******************************************************************
 	 * 						SELECTION METHODS						   *
 	 *******************************************************************/
 	private Individual selectingOptions(String selection) {
 		Individual parent = new Individual();
-		if (selection.equals("select")) parent = select();
-		if (selection.equals("roulette")) parent = rouletteSelection();
+		if (selection.equals("select"))     parent = select();
+		if (selection.equals("roulette"))   parent = rouletteSelection();
 		if (selection.equals("tournament")) parent = tournamentSelection();
 		return parent;
 	}
@@ -241,9 +266,9 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	 *******************************************************************/
 	private ArrayList<Individual> crossoverOptions(String crossover, Individual parent1, Individual parent2) {
 		ArrayList<Individual> children = new ArrayList<>();
-		if (crossover.equals("reproduce")) children = reproduce(parent1, parent2);
-		if (crossover.equals("uniform")) children = uniformCrossover(parent1, parent2);
-		if (crossover.equals("doublepoint")) children = doublePointCrossover(parent1, parent2);
+		if (crossover.equals("reproduce"))      children = reproduce(parent1, parent2);
+		if (crossover.equals("uniform"))        children = uniformCrossover(parent1, parent2);
+		if (crossover.equals("doublepoint"))    children = doublePointCrossover(parent1, parent2);
 		return children;
 	}
 
