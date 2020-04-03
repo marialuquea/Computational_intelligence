@@ -31,15 +31,15 @@ public class TestAlgorithms extends NeuralNetwork
         ExampleEvolutionaryAlgorithm ea = new ExampleEvolutionaryAlgorithm();
         HashMap<String, String> best_ones = new HashMap<String, String>();
         int times = 10;
-        int operators = 2;
+        int operators = 3;
         for (int i = 1; i <= operators; i++) // for each initialisation mode
         {
             for (int j = 1; j <= times; j++) // run n times
             {
                 System.out.println("\n\n--i: " + j + " out of " + times + "\n");
-                System.out.println("Testing for initialisation " + initialisation[i - 1]);
-                String key_type = Integer.toString(j)+" "+initialisation[i-1];
-                best_ones.put(key_type, ea.runAlgorithm(initialisation[i - 1], selection[2], crossover[1], mutation[2], diversity[1], replacement[0]).toString());
+                System.out.println("Testing for initialisation " + selection[i - 1]);
+                String key_type = Integer.toString(j)+" "+selection[i-1];
+                best_ones.put(key_type, ea.runAlgorithm(initialisation[0], selection[i-1], crossover[1], mutation[2], diversity[1], replacement[0]).toString());
             }
         }
 
@@ -49,7 +49,7 @@ public class TestAlgorithms extends NeuralNetwork
         }
 
         // export all results to file
-        try(FileWriter fw = new FileWriter("results/results.txt", true);
+        try(FileWriter fw = new FileWriter("results/selection.txt", true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw))
         {
