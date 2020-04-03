@@ -26,7 +26,7 @@ public class StartNoGui
 		
 		
 		//Create a new Neural Network Trainer Using the above parameters 
-		NeuralNetwork nn = new IslandModels();
+		NeuralNetwork nn = new TestAlgorithms();
 		
 		//train the neural net (Go and have a coffee) 
 		nn.run();
@@ -35,20 +35,19 @@ public class StartNoGui
 		 * (these will have been saved to disk in the project default directory using 
 		 * the saveWeights method in EvolutionaryTrainer) 
 		 */
-		System.out.println(nn.best);
-		
-		
-		
-		
+		//System.out.println(nn.best);
+
 		/**
 		 * The last File Saved to the Output Directory will contain the best weights /
 		 * Parameters and Fitness on the Training Set 
 		 * 
 		 * We can used the trained NN to Test on the test Set
 		 */
+		/*
 		Parameters.setDataSet(DataSet.Test);
 		double fitness = Fitness.evaluate(nn);
 		System.out.println("Fitness on " + Parameters.getDataSet() + " " + fitness);
+		 */
 		
 		/**
 		 * Or We can reload the NN from the file generated during training and test it on a data set 
@@ -59,11 +58,12 @@ public class StartNoGui
 		 * Files are saved automatically at the end of training
 		 *  
 		 */
-		
+		/*
 		ExampleEvolutionaryAlgorithm nn2 = ExampleEvolutionaryAlgorithm.loadNeuralNetwork("1518446327913-5.txt");
 		Parameters.setDataSet(DataSet.Random);
 		double fitness2 = Fitness.evaluate(nn2);
 		System.out.println("Fitness on " + Parameters.getDataSet() + " " + fitness2);
+		 */
 		
 	}
 }

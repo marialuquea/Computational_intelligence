@@ -17,8 +17,8 @@ public class Parameters
 	public static int maxEvaluations = 20000;
 	public static int tournamentSize = 7;
 
-	public static int reducePopSizeRate = 30;
-	public static int minPopSize = 20;
+	public static int reducePopSizeRate = 7;
+	public static int minPopSize = 35;
 
 	private static String [] activations = {"tanh", "relu", "selu", "step"};
 	public static String activation = activations[0];

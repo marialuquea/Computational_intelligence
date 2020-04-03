@@ -20,25 +20,14 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	@Override
 	public void run()
 	{
-		runAlgorithm(initialisation[1], selection[2], crossover[1], mutation[2], diversity[1], replacement[0]);
-		//testAlgorithm();
+		Individual best_ind = runAlgorithm(initialisation[1], selection[2], crossover[1], mutation[2], diversity[1], replacement[0]);
+		System.out.println(best_ind.toString());
 	}
 
-	public void testAlgorithm()
+
+	public Individual runAlgorithm(String initMode, String selection, String crossover, String mutation, String diversity, String replace)
 	{
-		int times = 2;
-		for (int i = 0; i <= times; i++)
-		{
-			System.out.println("--i: "+i+"\n");
-			runAlgorithm(initialisation[1], selection[i], crossover[i], mutation[i], diversity[i], replacement[i]);
-		}
-
-	}
-
-	public void runAlgorithm(String initMode, String selection, String crossover, String mutation, String diversity, String replace)
-	{
-		//System.out.println(selection + crossover+ mutation+ diversity+ replace);
-
+		//System.out.println("initMode: \t"+initMode);
 		//Initialise a population of Individuals with random weights
 		population = initialisingOptions(initMode);
 		System.out.println("Population initialized: "+population.size());
@@ -46,13 +35,14 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		//Record a copy of the best Individual in the population
 		best = getBest(population);
 		System.out.println("Best From Initialisation " + best);
+		System.out.println("maxEvaluations "+Parameters.maxEvaluations);
 
-
-
-		while (evaluations < Parameters.maxEvaluations)
+		for(int gen = 0; gen < Parameters.maxEvaluations; gen++)
 		{
+			System.out.print(gen+" ");
+
 			// DIVERSITY
-			if (diversity.equals("sawtooth") && evaluations % Parameters.reducePopSizeRate == 0){
+			if (diversity.equals("sawtooth") && gen % Parameters.reducePopSizeRate == 0){
 				System.out.println("SAWTOOTH: Removing individual, pop size: "+population.size());
 				removeIndividual(); // every 30 iterations, remove worst individual
 				if (population.size() <= Parameters.minPopSize) {
@@ -85,10 +75,12 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 
 		// Hill climber
 		//if (diversity.equals("hillclimber"))
-		hill_climber(best, 20000);
+		//hill_climber(best, 20000);
 
 		//save the trained network to disk
-		saveNeuralNetwork();
+		//saveNeuralNetwork();
+		System.out.println("best in iteration: "+best.toString());
+		return best;
 	}
 
 
