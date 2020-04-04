@@ -35,7 +35,7 @@ public class Parameters
 	public static String [] selection = {"select", "roulette", "tournament"};
 	public static String [] crossover = {"reproduce", "uniform", "doublepoint"};
 	public static String [] mutation = {"mutate", "swap", "constrained"};
-	public static String [] diversity = {"hillclimber", "sawtooth"};
+	public static String [] diversity = {"sawtooth", "none"};
 	public static String [] replacement = {"replaceWorst", "tournament", "random"};
 
 	//Random number generator used throughout the application

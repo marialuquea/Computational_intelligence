@@ -21,7 +21,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	public void run()
 	{
 		Individual best_ind = runAlgorithm(initialisation[1], selection[2], crossover[1], mutation[2], diversity[1], replacement[0]);
-		System.out.println(best_ind.toString());
+		System.out.println(best_ind.toString()); 
 	}
 
 

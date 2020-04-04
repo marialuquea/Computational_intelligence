@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4de6c65-9f39-4e0a-9bb0-2dc3da23b7a4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/results/diversity.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coursework/ExampleEvolutionaryAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/ExampleEvolutionaryAlgorithm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coursework/Parameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/Parameters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/coursework/TestAlgorithms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/TestAlgorithms.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,6 +27,9 @@
   <component name="ProjectId" id="1ZkyzY3zJqY0tHOXFT0jm07pQNA" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -96,5 +102,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
