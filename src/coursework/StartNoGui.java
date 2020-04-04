@@ -43,11 +43,11 @@ public class StartNoGui
 		 * 
 		 * We can used the trained NN to Test on the test Set
 		 */
-
+		/*
 		Parameters.setDataSet(DataSet.Test);
 		double fitness = Fitness.evaluate(nn);
 		System.out.println("Fitness on test set: "+ fitness);
-
+		*/
 		
 		/**
 		 * Or We can reload the NN from the file generated during training and test it on a data set 

@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4de6c65-9f39-4e0a-9bb0-2dc3da23b7a4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/results/RESULTS.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/hillclimber.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/initMode.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/initMode.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/coursework/ExampleEvolutionaryAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/ExampleEvolutionaryAlgorithm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/coursework/Parameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/Parameters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/coursework/StartNoGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/StartNoGui.java" afterDir="false" />
@@ -70,10 +73,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestAlgorithms" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="coursework.TestAlgorithms" />
+      <module name="Computational_intelligence" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="coursework.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.StartNoGui" />
         <item itemvalue="Application.StartGui" />
+        <item itemvalue="Application.TestAlgorithms" />
       </list>
     </recent_temporary>
   </component>

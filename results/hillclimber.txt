@@ -1,0 +1,3 @@
+1 hillclimber dataset: Training - 0.27949005986031084	
+1 hillclimber dataset: Training - 0.2722136599982578	
+1 hillclimber dataset: Training - 0.2716277245214283	
