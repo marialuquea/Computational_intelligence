@@ -21,7 +21,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	public void run()
 	{
 		Individual best_ind = runAlgorithm(initialisation[1], selection[2], crossover[1], mutation[2], diversity[1], replacement[0]);
-		System.out.println(best_ind.toString()); 
+		System.out.println(best_ind.toString());
 	}
 
 
@@ -74,8 +74,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		}
 
 		// Hill climber
-		//if (diversity.equals("hillclimber"))
-		//hill_climber(best, 20000);
+		if (diversity.equals("hillclimber")) hill_climber(best, 20000);
 
 		//save the trained network to disk
 		//saveNeuralNetwork();
@@ -433,33 +432,38 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	}
 
 	// Hill Climber
-	private Individual hill_climber(Individual i, int iterations) {
+	private Individual hill_climber(Individual indv, int iterations) {
 		System.out.println("\n---HILL CLIMBER---");
-		Individual best = i.copy();
-		Individual temp = i.copy(); // the best seed after running the EA
-		double before = temp.fitness;
+		Individual best_i = indv;
+		//run for max evaluations
+		for(int gen = 0; gen < iterations; gen++) {
+			//mutate the best
+			Individual candidate = mutateIndv(best_i);
 
-		for (int j = 0; j < iterations; j++)
-		{
-			// change the value of 1 value
-			int mutationChange = Parameters.random.nextInt(1); // check
-			int index = Parameters.random.nextInt(temp.chromosome.length);
+			if (gen % 500 == 0) System.out.println(gen + " - "+best_i.fitness);
 
-			// ensure mutation is valid
-			if (temp.chromosome[index] + mutationChange <= 1)
-				temp.chromosome[index] = temp.chromosome[index] + mutationChange;
-
-			// if after mutation, individual is better, now work on that one
-			if (temp.fitness <  best.fitness)
-			{
-				best = temp.copy();
-				System.out.println("better: "+best.fitness+" at iteration "+j);
+			//accept if better
+			if(candidate.fitness < best_i.fitness) {
+				best_i = candidate;
+				System.out.println(candidate.fitness + " - "+best_i.fitness);
 			}
-			else
-				temp = best.copy(); // forget about the mutated allele and work on first one
 		}
-		System.out.println("best: "+best.fitness);
-		return best;
+		return best_i;
+	}
+
+	private Individual mutateIndv(Individual mutateThis) {
+		Individual indv = mutateThis.copy();
+		for (int i = 0; i < indv.chromosome.length; i++) {
+			if (Parameters.random.nextDouble() < Parameters.mutateRate) {
+				if (Parameters.random.nextBoolean()) {
+					indv.chromosome[i] += (Parameters.mutateChange);
+				} else {
+					indv.chromosome[i] -= (Parameters.mutateChange);
+				}
+			}
+		}
+		Fitness.evaluate(indv, this);
+		return indv;
 	}
 
 	/*******************************************************************

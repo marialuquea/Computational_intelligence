@@ -20,8 +20,8 @@ public class TestAlgorithms extends NeuralNetwork
     private String [] replacement = Parameters.replacement;
 
     public static void main(String[] args) {
-        NeuralNetwork ea = new ExampleEvolutionaryAlgorithm();
-        ea.run();
+        //NeuralNetwork ea = new ExampleEvolutionaryAlgorithm();
+        //ea.run();
     }
 
     @Override
@@ -49,13 +49,12 @@ public class TestAlgorithms extends NeuralNetwork
         }
 
         // export all results to file
-        try(FileWriter fw = new FileWriter("results/diversity.txt", true);
+        try(FileWriter fw = new FileWriter("results/hillclimber.txt", true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw))
         {
-            for (String i : best_ones.keySet()) {
+            for (String i : best_ones.keySet())
                 out.println(i + " - " + best_ones.get(i));
-            }
 
         }
         catch (Exception e) { e.printStackTrace(); }

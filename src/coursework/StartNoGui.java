@@ -21,14 +21,14 @@ public class StartNoGui
 		//number of hidden nodes in the neural network
 		//Parameters.setHidden(5);
 		
-		//Set the data set for training 
+		//Set the data set for training
 		Parameters.setDataSet(DataSet.Training);
-		
-		
-		//Create a new Neural Network Trainer Using the above parameters 
+
+
+		//Create a new Neural Network Trainer Using the above parameters
 		NeuralNetwork nn = new TestAlgorithms();
-		
-		//train the neural net (Go and have a coffee) 
+
+		//train the neural net (Go and have a coffee)
 		nn.run();
 		
 		/* Print out the best weights found
@@ -43,11 +43,11 @@ public class StartNoGui
 		 * 
 		 * We can used the trained NN to Test on the test Set
 		 */
-		/*
+
 		Parameters.setDataSet(DataSet.Test);
 		double fitness = Fitness.evaluate(nn);
-		System.out.println("Fitness on " + Parameters.getDataSet() + " " + fitness);
-		 */
+		System.out.println("Fitness on test set: "+ fitness);
+
 		
 		/**
 		 * Or We can reload the NN from the file generated during training and test it on a data set 

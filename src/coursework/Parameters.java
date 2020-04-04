@@ -14,9 +14,9 @@ public class Parameters
 	public static double maxGene = +3;
 
 	public static int popSize = 50;
-	public static int maxEvaluations = 6000;
-	public static int tournamentSize = 7;
+	public static int maxEvaluations = 5;
 
+	public static int tournamentSize = 7;
 	public static int reducePopSizeRate = 7;
 	public static int minPopSize = 35;
 
@@ -28,14 +28,15 @@ public class Parameters
 	// Change = the maximum +/- adjustment to the gene value
 	public static double mutateRate = 0.04; // mutation rate for mutation operator
 	public static double mutateChange = 0.1; // delta change for mutation operator
-	public static double crossoverProbability = 0.5;
 	public static double mutationProbability = 0.5;
+	public static double crossoverProbability = 0.5;
+
 
 	public static String [] initialisation = {"random", "best"};
 	public static String [] selection = {"select", "roulette", "tournament"};
 	public static String [] crossover = {"reproduce", "uniform", "doublepoint"};
 	public static String [] mutation = {"mutate", "swap", "constrained"};
-	public static String [] diversity = {"sawtooth", "none"};
+	public static String [] diversity = {"hillclimber", "none"};
 	public static String [] replacement = {"replaceWorst", "tournament", "random"};
 
 	//Random number generator used throughout the application
