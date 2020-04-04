@@ -179,6 +179,30 @@ public class TestAlgorithms extends NeuralNetwork
 
 
 
+
+        // MUTATE RATE
+        HashMap<String, String> best_mutate_rate = new HashMap<String, String>();
+        int operators7 = 7;
+        for (int i = 1; i <= operators7; i++){ // for no of things to try
+            for (int j = 1; j <= times; j++) { // run n times
+                System.out.println("\n\n--i: " + j + " out of " + times + "\n");
+                Parameters.mutateRate = Parameters.mutateRates[i-1];
+                System.out.println("Testing for mutate rate " + Parameters.mutateRate);
+                String key_type = Integer.toString(j)+" "+Parameters.mutateRate;
+                best_mutate_rate.put(key_type, ea.runAlgorithm(initialisation[0], selection[0], crossover[1], mutation[0], diversity[1], replacement[0]).toString());
+            }
+        }
+        for (String i : best_mutate_rate.keySet()) { System.out.println(i + " - " + best_mutate_rate.get(i)); }
+        // export all results to file
+        try(FileWriter fw = new FileWriter("results/min_pop_size.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw))
+        { for (String i : best_mutate_rate.keySet()) out.println(i + " - " + best_mutate_rate.get(i));  }
+        catch (Exception e) { e.printStackTrace(); }
+
+
+
+
     }
 
     @Override

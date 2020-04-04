@@ -76,7 +76,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		if (diversity.equals("hillclimber")) hill_climber(best, 10000);
 
 		//save the trained network to disk
-		saveNeuralNetwork();
+		//saveNeuralNetwork();
 		System.out.println("best in iteration: "+best.toString());
 		return best;
 	}
@@ -321,7 +321,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 				if (Parameters.random.nextDouble() < Parameters.mutateRate)
 				{
 					if (Parameters.random.nextBoolean())
-						individual.chromosome[i] += (Parameters.mutateChange); // need to experiment with this
+						individual.chromosome[i] += (Parameters.mutateChange);
 					else
 						individual.chromosome[i] -= (Parameters.mutateChange);
 				}
@@ -333,7 +333,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		for(Individual child : individuals)
 		{
 			// mutation probability
-			if(Parameters.random.nextDouble() < Parameters.mutationProbability)
+			if(Parameters.random.nextDouble() < Parameters.mutateRate)
 			{
 				int index1 = Parameters.random.nextInt(child.chromosome.length);
 				int index2 = Parameters.random.nextInt(child.chromosome.length);
