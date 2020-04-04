@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4de6c65-9f39-4e0a-9bb0-2dc3da23b7a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/1586035689048-30.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1586035787489-30.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1586035883469-30.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1586035984285-30.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1586036090412-30.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1586036195556-30.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1586036310285-30.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/num_hidden_nodes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/activation.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/min_pop_size.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/minmaxGene.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/mutate_change.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/mutate_rate.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/popSize.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/tournament.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coursework/ExampleEvolutionaryAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/ExampleEvolutionaryAlgorithm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/coursework/Parameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/Parameters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/coursework/TestAlgorithms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/TestAlgorithms.java" afterDir="false" />
     </list>

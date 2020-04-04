@@ -19,13 +19,13 @@ public class Parameters
 
 	public static int [] popSizes = {20, 50, 75, 100, 125, 150};
 	public static int popSize = 50;
-	public static int maxEvaluations = 10000;
+	public static int maxEvaluations = 5;
 
 	public static int [] tournament_and_rate = {5, 7, 10, 15, 20};
 	public static int tournamentSize = 7; // check which one to put in algorithm
 	public static int reducePopSizeRate = 7;
 	public static int [] minPopSizes = {20, 30, 40, 50};
-	public static int minPopSize = 35;
+	public static int minPopSize = 25;
 
 	public static String [] activations = {"tanh", "relu", "selu", "step"};
 	public static String activation = "tanh";

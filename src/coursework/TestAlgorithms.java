@@ -31,8 +31,9 @@ public class TestAlgorithms extends NeuralNetwork
     {
         System.out.println("Starting testing script");
         ExampleEvolutionaryAlgorithm ea = new ExampleEvolutionaryAlgorithm();
-        int times = 8;
+        int times = 1;
 
+        /*
         // NUMBER OF HIDDEN NODES - TESTING NOW SO DELETE LATER
         HashMap<String, String> best_ones = new HashMap<String, String>();
         int operators = 5;
@@ -52,7 +53,7 @@ public class TestAlgorithms extends NeuralNetwork
             PrintWriter out = new PrintWriter(bw))
         { for (String i : best_ones.keySet()) { out.println(i + " - " + best_ones.get(i)); } }
         catch (Exception e) { e.printStackTrace(); }
-
+         */
 
 
 
@@ -69,6 +70,7 @@ public class TestAlgorithms extends NeuralNetwork
                 best_min_max_gene.put(key_type, ea.runAlgorithm(initialisation[0], selection[0], crossover[1], mutation[1], diversity[1], replacement[0]).toString());
             }
         }
+        System.out.println("-----RESULTS FOR MIN MAX GENE-----");
         for (String i : best_min_max_gene.keySet()) { System.out.println(i + " - " + best_min_max_gene.get(i)); }
         // export all results to file
         try(FileWriter fw = new FileWriter("results/minmaxGene.txt", true);
@@ -76,7 +78,9 @@ public class TestAlgorithms extends NeuralNetwork
             PrintWriter out = new PrintWriter(bw))
         { for (String i : best_min_max_gene.keySet()) out.println(i + " - " + best_min_max_gene.get(i));  }
         catch (Exception e) { e.printStackTrace(); }
-
+        best_min_max_gene.clear();
+        Parameters.minGene = -3;
+        Parameters.maxGene = 3;
 
 
 
@@ -93,6 +97,7 @@ public class TestAlgorithms extends NeuralNetwork
                 best_pop_size.put(key_type, ea.runAlgorithm(initialisation[0], selection[0], crossover[1], mutation[1], diversity[1], replacement[0]).toString());
             }
         }
+        System.out.println("-----RESULTS FOR POP SIZE-----");
         for (String i : best_pop_size.keySet()) { System.out.println(i + " - " + best_pop_size.get(i)); }
         // export all results to file
         try(FileWriter fw = new FileWriter("results/popSize.txt", true);
@@ -100,7 +105,8 @@ public class TestAlgorithms extends NeuralNetwork
             PrintWriter out = new PrintWriter(bw))
         { for (String i : best_pop_size.keySet()) out.println(i + " - " + best_pop_size.get(i));  }
         catch (Exception e) { e.printStackTrace(); }
-
+        best_pop_size.clear();
+        Parameters.popSize = 50;
 
 
 
@@ -118,6 +124,7 @@ public class TestAlgorithms extends NeuralNetwork
                 best_tournament.put(key_type, ea.runAlgorithm(initialisation[0], selection[2], crossover[1], mutation[1], diversity[1], replacement[1]).toString());
             }
         }
+        System.out.println("-----RESULTS FOR TOURNAMENT SIZE-----");
         for (String i : best_tournament.keySet()) { System.out.println(i + " - " + best_tournament.get(i)); }
         // export all results to file
         try(FileWriter fw = new FileWriter("results/tournament.txt", true);
@@ -125,8 +132,9 @@ public class TestAlgorithms extends NeuralNetwork
             PrintWriter out = new PrintWriter(bw))
         { for (String i : best_tournament.keySet()) out.println(i + " - " + best_tournament.get(i));  }
         catch (Exception e) { e.printStackTrace(); }
-
-
+        best_tournament.clear();
+        Parameters.tournamentSize = 7;
+        Parameters.reducePopSizeRate = 7;
 
 
 
@@ -143,6 +151,7 @@ public class TestAlgorithms extends NeuralNetwork
                 best_tournament.put(key_type, ea.runAlgorithm(initialisation[0], selection[2], crossover[1], mutation[1], diversity[1], replacement[1]).toString());
             }
         }
+        System.out.println("-----RESULTS FOR SAWTOOTH-----");
         for (String i : best_min_pop.keySet()) { System.out.println(i + " - " + best_min_pop.get(i)); }
         // export all results to file
         try(FileWriter fw = new FileWriter("results/min_pop_size.txt", true);
@@ -150,8 +159,8 @@ public class TestAlgorithms extends NeuralNetwork
             PrintWriter out = new PrintWriter(bw))
         { for (String i : best_min_pop.keySet()) out.println(i + " - " + best_min_pop.get(i));  }
         catch (Exception e) { e.printStackTrace(); }
-
-
+        best_min_pop.clear();
+        Parameters.minPopSize = 25;
 
 
 
@@ -168,15 +177,16 @@ public class TestAlgorithms extends NeuralNetwork
                 best_activation.put(key_type, ea.runAlgorithm(initialisation[0], selection[0], crossover[1], mutation[1], diversity[1], replacement[0]).toString());
             }
         }
+        System.out.println("-----RESULTS FOR ACTIVATIONS-----");
         for (String i : best_activation.keySet()) { System.out.println(i + " - " + best_activation.get(i)); }
         // export all results to file
-        try(FileWriter fw = new FileWriter("results/min_pop_size.txt", true);
+        try(FileWriter fw = new FileWriter("results/activation.txt", true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw))
         { for (String i : best_activation.keySet()) out.println(i + " - " + best_activation.get(i));  }
         catch (Exception e) { e.printStackTrace(); }
-
-
+        best_activation.clear();
+        Parameters.activation = "tanh";
 
 
 
@@ -192,15 +202,41 @@ public class TestAlgorithms extends NeuralNetwork
                 best_mutate_rate.put(key_type, ea.runAlgorithm(initialisation[0], selection[0], crossover[1], mutation[0], diversity[1], replacement[0]).toString());
             }
         }
+        System.out.println("-----RESULTS FOR MUTATE RATE-----");
         for (String i : best_mutate_rate.keySet()) { System.out.println(i + " - " + best_mutate_rate.get(i)); }
         // export all results to file
-        try(FileWriter fw = new FileWriter("results/min_pop_size.txt", true);
+        try(FileWriter fw = new FileWriter("results/mutate_rate.txt", true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw))
         { for (String i : best_mutate_rate.keySet()) out.println(i + " - " + best_mutate_rate.get(i));  }
         catch (Exception e) { e.printStackTrace(); }
+        best_mutate_rate.clear();
+        Parameters.mutateRate = 0.04;
 
 
+
+
+        // MUTATE CHANGE
+        HashMap<String, String> best_mutate_change = new HashMap<String, String>();
+        for (int i = 1; i <= operators7; i++){ // for no of things to try
+            for (int j = 1; j <= times; j++) { // run n times
+                System.out.println("\n\n--i: " + j + " out of " + times + "\n");
+                Parameters.mutateChange = Parameters.mutateRates[i-1];
+                System.out.println("Testing for mutate rate " + Parameters.mutateChange);
+                String key_type = Integer.toString(j)+" "+Parameters.mutateChange;
+                best_mutate_change.put(key_type, ea.runAlgorithm(initialisation[0], selection[0], crossover[1], mutation[0], diversity[1], replacement[0]).toString());
+            }
+        }
+        System.out.println("-----RESULTS FOR MUTATE CHANGE-----");
+        for (String i : best_mutate_change.keySet()) { System.out.println(i + " - " + best_mutate_change.get(i)); }
+        // export all results to file
+        try(FileWriter fw = new FileWriter("results/mutate_change.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw))
+        { for (String i : best_mutate_change.keySet()) out.println(i + " - " + best_mutate_change.get(i));  }
+        catch (Exception e) { e.printStackTrace(); }
+        best_mutate_change.clear();
+        Parameters.mutateChange = 0.1;
 
 
     }
