@@ -31,7 +31,7 @@ public class TestAlgorithms extends NeuralNetwork
     {
         System.out.println("Starting testing script");
         ExampleEvolutionaryAlgorithm ea = new ExampleEvolutionaryAlgorithm();
-        int times = 1;
+        int times = 8;
 
         /*
         // NUMBER OF HIDDEN NODES - TESTING NOW SO DELETE LATER
@@ -56,7 +56,7 @@ public class TestAlgorithms extends NeuralNetwork
          */
 
 
-
+        /*
         // MIN MAX GENE
         HashMap<String, String> best_min_max_gene = new HashMap<String, String>();
         int operators2 = 8;
@@ -138,6 +138,8 @@ public class TestAlgorithms extends NeuralNetwork
 
 
 
+         */
+
 
         // MIN POP SIZE - sawtooth
         HashMap<String, String> best_min_pop = new HashMap<String, String>();
@@ -148,7 +150,7 @@ public class TestAlgorithms extends NeuralNetwork
                 Parameters.minPopSize = Parameters.minPopSizes[i-1];
                 System.out.println("Testing for min pop size " + Parameters.minPopSize);
                 String key_type = Integer.toString(j)+" "+Parameters.minPopSize;
-                best_tournament.put(key_type, ea.runAlgorithm(initialisation[0], selection[2], crossover[1], mutation[1], diversity[1], replacement[1]).toString());
+                best_min_pop.put(key_type, ea.runAlgorithm(initialisation[0], selection[2], crossover[1], mutation[1], diversity[1], replacement[1]).toString());
             }
         }
         System.out.println("-----RESULTS FOR SAWTOOTH-----");
@@ -163,7 +165,7 @@ public class TestAlgorithms extends NeuralNetwork
         Parameters.minPopSize = 25;
 
 
-
+/*
 
         // ACTIVATIONS
         HashMap<String, String> best_activation = new HashMap<String, String>();
@@ -238,6 +240,8 @@ public class TestAlgorithms extends NeuralNetwork
         best_mutate_change.clear();
         Parameters.mutateChange = 0.1;
 
+
+ */
 
     }
 
