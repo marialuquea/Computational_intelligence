@@ -2,33 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4de6c65-9f39-4e0a-9bb0-2dc3da23b7a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/results/DONE/activation.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/DONE/crossover.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/DONE/diversity.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/DONE/initMode.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/DONE/minmaxGene.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/DONE/mutate_change.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/DONE/mutate_rate.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/DONE/mutation.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/DONE/num_hidden_nodes.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/DONE/popSize.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/DONE/replacement.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/DONE/selection.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/DONE/tournament.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/1586081865653-30.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/1586081971425-30.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/1586082095638-30.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/1586082221917-30.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/1586082697008-15.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/activation.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/crossover.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/diversity.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/initMode.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/minmaxGene.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/mutate_change.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/mutate_rate.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/mutation.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/num_hidden_nodes.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/popSize.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/replacement.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/selection.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/tournament.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coursework/ExampleEvolutionaryAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/ExampleEvolutionaryAlgorithm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coursework/Parameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/Parameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coursework/StartNoGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/StartNoGui.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +47,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.StartNoGui">
+  <component name="RunManager" selected="Application.StartGui">
     <configuration name="StartGui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="coursework.StartGui" />
       <module name="Computational_intelligence" />
@@ -107,8 +89,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StartNoGui" />
         <item itemvalue="Application.StartGui" />
+        <item itemvalue="Application.StartNoGui" />
         <item itemvalue="Application.TestAlgorithms" />
       </list>
     </recent_temporary>

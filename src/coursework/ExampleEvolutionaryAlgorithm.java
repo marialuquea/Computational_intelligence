@@ -20,7 +20,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	@Override
 	public void run()
 	{
-		runAlgorithm(initialisation[1], selection[2], crossover[1], mutation[2], diversity[1], replacement[0]);
+		runAlgorithm(initialisation[0], selection[0], crossover[1], mutation[1], diversity[1], replacement[0]);
 	}
 
 
@@ -73,10 +73,11 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		}
 
 		// Hill climber
-		if (diversity.equals("hillclimber")) hill_climber(best, 10000);
+		//if (diversity.equals("hillclimber"))
+		hill_climber(best, 10000);
 
 		//save the trained network to disk
-		//saveNeuralNetwork();
+		saveNeuralNetwork();
 		System.out.println("best in iteration: "+best.toString());
 		return best;
 	}

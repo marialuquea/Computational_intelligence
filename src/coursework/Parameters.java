@@ -9,33 +9,33 @@ import model.LunarParameters.DataSet;
 public class Parameters
 {
 	public static int [] numHidenns = {5, 10, 15, 20, 30};
-	public static int numHidden = 10;
+	public static int numHidden = 15;
 	private static int numGenes = calculateNumGenes();
 
 	public static double [] minGenes = {-0.5, -0.75, -1.0, -2.0, -3.0, -4.0, -5.0, -6.0};
 	public static double [] maxGenes = {0.5, 0.75, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0};
-	public static double minGene = -3; // specifies minimum and maximum weight values
-	public static double maxGene = 3;
+	public static double minGene = -4; // specifies minimum and maximum weight values
+	public static double maxGene = 4;
 
 	public static int [] popSizes = {20, 50, 75, 100, 125, 150};
 	public static int popSize = 50;
-	public static int maxEvaluations = 10000;
+	public static int maxEvaluations = 20000;
 
 	public static int [] tournament_and_rate = {5, 7, 10, 15, 20};
-	public static int tournamentSize = 7; // check which one to put in algorithm
+	public static int tournamentSize = 5; // check which one to put in algorithm
 	public static int reducePopSizeRate = 7;
 	public static int [] minPopSizes = {20, 30, 40, 50};
-	public static int minPopSize = 25;
+	public static int minPopSize = 15;
 
 	public static String [] activations = {"tanh", "relu", "selu", "step"};
-	public static String activation = "tanh";
+	public static String activation = "relu";
 
 	// Parameters for mutation
 	// Rate = probability of changing a gene
 	// Change = the maximum +/- adjustment to the gene value
 	public static double [] mutateRates = {0.01, 0.04, 0.08, 0.12, 0.2, 0.3, 0.5};
-	public static double mutateRate = 0.04; // mutation rate for mutation operator
-	public static double mutateChange = 0.1; // delta change for mutation operator
+	public static double mutateRate = 0.75; // mutation rate for mutation operator
+	public static double mutateChange = 0.9; // delta change for mutation operator
 	public static double crossoverProbability = 0.5;
 
 

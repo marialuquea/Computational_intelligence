@@ -26,7 +26,7 @@ public class StartNoGui
 
 
 		//Create a new Neural Network Trainer Using the above parameters
-		NeuralNetwork nn = new TestAlgorithms();
+		NeuralNetwork nn = new ExampleEvolutionaryAlgorithm();
 
 		//train the neural net (Go and have a coffee)
 		nn.run();
@@ -43,11 +43,11 @@ public class StartNoGui
 		 * 
 		 * We can used the trained NN to Test on the test Set
 		 */
-		/*
+		System.out.println("NOW TESTING ON TEST SET");
 		Parameters.setDataSet(DataSet.Test);
 		double fitness = Fitness.evaluate(nn);
 		System.out.println("Fitness on test set: "+ fitness);
-		*/
+
 		
 		/**
 		 * Or We can reload the NN from the file generated during training and test it on a data set 
