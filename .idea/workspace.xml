@@ -2,15 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4de6c65-9f39-4e0a-9bb0-2dc3da23b7a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/1586081865653-30.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1586081971425-30.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1586082095638-30.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1586082221917-30.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/1586082697008-15.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/activation.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/crossover.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/initMode.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/min_pop_size.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/minmaxGene.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/mutate_change.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/mutate_rate.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/mutation.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/num_hidden_nodes.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/popSize.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/replacement.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/sawtooth.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/selection.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/shapiro_t-test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/tournament.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/txt_files/activation.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/txt_files/crossover.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/txt_files/diversity.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/txt_files/hillclimber.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/txt_files/initMode.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/txt_files/min_pop_size.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/txt_files/minmaxGene.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/txt_files/mutate_change.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/txt_files/mutate_rate.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/txt_files/mutation.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/txt_files/num_hidden_nodes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/txt_files/popSize.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/txt_files/replacement.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/txt_files/selection.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/txt_files/tournament.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/activation.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/crossover.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/diversity.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/hillclimber.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/initMode.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/min_pop_size.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/minmaxGene.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/mutate_change.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/mutate_rate.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/mutation.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/num_hidden_nodes.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/popSize.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/replacement.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/selection.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/tournament.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/coursework/ExampleEvolutionaryAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/ExampleEvolutionaryAlgorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coursework/Parameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/Parameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coursework/StartNoGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/StartNoGui.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

@@ -187,13 +187,13 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	 *******************************************************************/
 	public Individual selectingOptions(String selection, ArrayList<Individual> individuals) {
 		Individual parent = new Individual();
-		if (selection.equals("select"))     parent = select(individuals);
+		if (selection.equals("select"))     parent = random(individuals);
 		if (selection.equals("roulette"))   parent = rouletteSelection(individuals);
 		if (selection.equals("tournament")) parent = tournamentSelection(individuals);
 		return parent;
 	}
 
-	private Individual select(ArrayList<Individual> individuals) {
+	private Individual random(ArrayList<Individual> individuals) {
 		Individual parent = individuals.get(Parameters.random.nextInt(individuals.size()));
 		return parent.copy();
 	}
@@ -311,7 +311,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	public void mutationOptions(String mutation, ArrayList<Individual> children) {
 		if (mutation.equals("mutate")) mutate(children);
 		if (mutation.equals("swap")) swapMutation(children);
-		if (mutation.equals("constrained")) constrainedMutation(children);
+		if (mutation.equals("constrained")) limitedMutation(children);
 	}
 
 	private void mutate(ArrayList<Individual> individuals) {
@@ -347,7 +347,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		}
 	}
 
-	private void constrainedMutation(ArrayList<Individual> individuals) {
+	private void limitedMutation(ArrayList<Individual> individuals) {
         for(Individual individual : individuals)
         {
             for (int i = 0; i < individual.chromosome.length; i++)
