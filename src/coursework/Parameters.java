@@ -18,7 +18,7 @@ public class Parameters
 	public static double maxGene = 2;
 
 	public static int [] popSizes = {20, 50, 75, 100, 125, 150};
-	public static int popSize = 150;
+	public static int popSize = 50;
 	public static int maxEvaluations = 20000;
 
 	public static int [] tournament_and_rate = {5, 7, 10, 15, 20};

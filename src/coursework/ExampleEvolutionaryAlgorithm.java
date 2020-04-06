@@ -20,7 +20,7 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 	@Override
 	public void run()
 	{
-		runAlgorithm(initialisation[0], selection[0], crossover[1], mutation[1], diversity[1], replacement[0]);
+		runAlgorithm(initialisation[1], selection[2], crossover[1], mutation[0], diversity[1], replacement[0]);
 	}
 
 
@@ -34,7 +34,6 @@ public class ExampleEvolutionaryAlgorithm extends NeuralNetwork
 		//Record a copy of the best Individual in the population
 		best = getBest(population);
 		System.out.println("Best From Initialisation " + best);
-		System.out.println("maxEvaluations "+Parameters.maxEvaluations);
 
 		for(int gen = 0; gen < Parameters.maxEvaluations; gen++)
 		{

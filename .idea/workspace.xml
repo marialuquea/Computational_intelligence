@@ -2,41 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4de6c65-9f39-4e0a-9bb0-2dc3da23b7a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/1586207284372-15.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/csv_files/activation.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/csv_files/crossover.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/csv_files/initMode.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/csv_files/min_pop_size.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/csv_files/minmaxGene.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/csv_files/mutate_change.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/csv_files/mutate_rate.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/csv_files/mutation.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/csv_files/num_hidden_nodes.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/csv_files/popSize.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/csv_files/replacement.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/csv_files/sawtooth.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/csv_files/selection.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/csv_files/tournament.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/1586208314837-12.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1586081865653-30.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1586081971425-30.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1586082095638-30.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1586082221917-30.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/RESULTS.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/results/RESULTS.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/activation.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/crossover.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/initMode.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/min_pop_size.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/minmaxGene.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/mutate_change.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/mutate_rate.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/mutation.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/num_hidden_nodes.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/popSize.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/replacement.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/sawtooth.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/selection.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/tournament.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/coursework/ExampleEvolutionaryAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/ExampleEvolutionaryAlgorithm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/coursework/Parameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/coursework/Parameters.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
