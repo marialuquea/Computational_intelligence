@@ -9,26 +9,26 @@ import model.LunarParameters.DataSet;
 public class Parameters
 {
 	public static int [] numHidenns = {5, 10, 15, 20, 30};
-	public static int numHidden = 15;
+	public static int numHidden = 12;
 	private static int numGenes = calculateNumGenes();
 
 	public static double [] minGenes = {-0.5, -0.75, -1.0, -2.0, -3.0, -4.0, -5.0, -6.0};
 	public static double [] maxGenes = {0.5, 0.75, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0};
-	public static double minGene = -4; // specifies minimum and maximum weight values
-	public static double maxGene = 4;
+	public static double minGene = -2; // specifies minimum and maximum weight values
+	public static double maxGene = 2;
 
 	public static int [] popSizes = {20, 50, 75, 100, 125, 150};
-	public static int popSize = 50;
+	public static int popSize = 150;
 	public static int maxEvaluations = 20000;
 
 	public static int [] tournament_and_rate = {5, 7, 10, 15, 20};
 	public static int tournamentSize = 5; // check which one to put in algorithm
 	public static int reducePopSizeRate = 7;
 	public static int [] minPopSizes = {20, 30, 40, 50};
-	public static int minPopSize = 15;
+	public static int minPopSize = 25;
 
 	public static String [] activations = {"tanh", "relu", "selu", "step"};
-	public static String activation = "relu";
+	public static String activation = "tanh";
 
 	// Parameters for mutation
 	// Rate = probability of changing a gene
